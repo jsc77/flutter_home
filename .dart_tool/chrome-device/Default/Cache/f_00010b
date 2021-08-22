@@ -1,0 +1,266 @@
+define(['dart_sdk'], (function load__packages__rxdart__src__streams__combine_latest_dart(dart_sdk) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
+  const async = dart_sdk.async;
+  const _internal = dart_sdk._internal;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  var combine_latest = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $isEmpty = dartx.isEmpty;
+  var $length = dartx.length;
+  var $_set = dartx._set;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $forEach = dartx.forEach;
+  dart._checkModuleNullSafetyMode(false);
+  var T$ = {
+    JSArrayOfStream: () => (T$.JSArrayOfStream = dart.constFn(_interceptors.JSArray$(async.Stream)))(),
+    ListOfStreamSubscription: () => (T$.ListOfStreamSubscription = dart.constFn(core.List$(async.StreamSubscription)))(),
+    VoidToListOfStreamSubscription: () => (T$.VoidToListOfStreamSubscription = dart.constFn(dart.fnType(T$.ListOfStreamSubscription(), [])))(),
+    ListOfStreamSubscriptionTodynamic: () => (T$.ListOfStreamSubscriptionTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.ListOfStreamSubscription()])))(),
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    VoidToNull: () => (T$.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    StreamSubscriptionTovoid: () => (T$.StreamSubscriptionTovoid = dart.constFn(dart.fnType(dart.void, [async.StreamSubscription])))(),
+    FutureOfvoid: () => (T$.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    StreamSubscriptionToFutureOfvoid: () => (T$.StreamSubscriptionToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [async.StreamSubscription])))(),
+    FutureOfList: () => (T$.FutureOfList = dart.constFn(async.Future$(core.List)))(),
+    VoidToFutureOfList: () => (T$.VoidToFutureOfList = dart.constFn(dart.fnType(T$.FutureOfList(), [])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var I$ = [
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/streams/combine_latest.dart",
+    "package:rxdart/src/streams/combine_latest.dart"
+  ];
+  const _is_CombineLatestStream_default = Symbol('_is_CombineLatestStream_default');
+  combine_latest.CombineLatestStream$ = dart.generic((T, R) => {
+    class CombineLatestStream extends async.StreamView$(R) {
+      static list(T, streams) {
+        if (streams == null) dart.nullFailed(I$[0], 65, 25, "streams");
+        return new (combine_latest.CombineLatestStream$(T, core.List$(T))).new(streams, dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 69, 18, "values");
+          return values;
+        }, dart.fnType(core.List$(T), [core.List$(T)])));
+      }
+      static combine2(A, B, R, streamOne, streamTwo, combiner) {
+        if (streamOne == null) dart.nullFailed(I$[0], 76, 15, "streamOne");
+        if (streamTwo == null) dart.nullFailed(I$[0], 77, 15, "streamTwo");
+        if (combiner == null) dart.nullFailed(I$[0], 78, 26, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamOne, streamTwo]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 82, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static combine3(A, B, C, R, streamA, streamB, streamC, combiner) {
+        if (streamA == null) dart.nullFailed(I$[0], 89, 15, "streamA");
+        if (streamB == null) dart.nullFailed(I$[0], 90, 15, "streamB");
+        if (streamC == null) dart.nullFailed(I$[0], 91, 15, "streamC");
+        if (combiner == null) dart.nullFailed(I$[0], 92, 31, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamA, streamB, streamC]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 96, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)), C.as(values[$_get](2)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static combine4(A, B, C, D, R, streamA, streamB, streamC, streamD, combiner) {
+        if (streamA == null) dart.nullFailed(I$[0], 109, 15, "streamA");
+        if (streamB == null) dart.nullFailed(I$[0], 110, 15, "streamB");
+        if (streamC == null) dart.nullFailed(I$[0], 111, 15, "streamC");
+        if (streamD == null) dart.nullFailed(I$[0], 112, 15, "streamD");
+        if (combiner == null) dart.nullFailed(I$[0], 113, 36, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamA, streamB, streamC, streamD]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 117, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)), C.as(values[$_get](2)), D.as(values[$_get](3)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static combine5(A, B, C, D, E, R, streamA, streamB, streamC, streamD, streamE, combiner) {
+        if (streamA == null) dart.nullFailed(I$[0], 131, 15, "streamA");
+        if (streamB == null) dart.nullFailed(I$[0], 132, 15, "streamB");
+        if (streamC == null) dart.nullFailed(I$[0], 133, 15, "streamC");
+        if (streamD == null) dart.nullFailed(I$[0], 134, 15, "streamD");
+        if (streamE == null) dart.nullFailed(I$[0], 135, 15, "streamE");
+        if (combiner == null) dart.nullFailed(I$[0], 136, 41, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamA, streamB, streamC, streamD, streamE]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 140, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)), C.as(values[$_get](2)), D.as(values[$_get](3)), E.as(values[$_get](4)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static combine6(A, B, C, D, E, F, R, streamA, streamB, streamC, streamD, streamE, streamF, combiner) {
+        if (streamA == null) dart.nullFailed(I$[0], 155, 15, "streamA");
+        if (streamB == null) dart.nullFailed(I$[0], 156, 15, "streamB");
+        if (streamC == null) dart.nullFailed(I$[0], 157, 15, "streamC");
+        if (streamD == null) dart.nullFailed(I$[0], 158, 15, "streamD");
+        if (streamE == null) dart.nullFailed(I$[0], 159, 15, "streamE");
+        if (streamF == null) dart.nullFailed(I$[0], 160, 15, "streamF");
+        if (combiner == null) dart.nullFailed(I$[0], 161, 46, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamA, streamB, streamC, streamD, streamE, streamF]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 165, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)), C.as(values[$_get](2)), D.as(values[$_get](3)), E.as(values[$_get](4)), F.as(values[$_get](5)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static combine7(A, B, C, D, E, F, G, R, streamA, streamB, streamC, streamD, streamE, streamF, streamG, combiner) {
+        if (streamA == null) dart.nullFailed(I$[0], 181, 15, "streamA");
+        if (streamB == null) dart.nullFailed(I$[0], 182, 15, "streamB");
+        if (streamC == null) dart.nullFailed(I$[0], 183, 15, "streamC");
+        if (streamD == null) dart.nullFailed(I$[0], 184, 15, "streamD");
+        if (streamE == null) dart.nullFailed(I$[0], 185, 15, "streamE");
+        if (streamF == null) dart.nullFailed(I$[0], 186, 15, "streamF");
+        if (streamG == null) dart.nullFailed(I$[0], 187, 15, "streamG");
+        if (combiner == null) dart.nullFailed(I$[0], 188, 51, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamA, streamB, streamC, streamD, streamE, streamF, streamG]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 192, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)), C.as(values[$_get](2)), D.as(values[$_get](3)), E.as(values[$_get](4)), F.as(values[$_get](5)), G.as(values[$_get](6)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static combine8(A, B, C, D, E, F, G, H, R, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, combiner) {
+        if (streamA == null) dart.nullFailed(I$[0], 209, 15, "streamA");
+        if (streamB == null) dart.nullFailed(I$[0], 210, 15, "streamB");
+        if (streamC == null) dart.nullFailed(I$[0], 211, 15, "streamC");
+        if (streamD == null) dart.nullFailed(I$[0], 212, 15, "streamD");
+        if (streamE == null) dart.nullFailed(I$[0], 213, 15, "streamE");
+        if (streamF == null) dart.nullFailed(I$[0], 214, 15, "streamF");
+        if (streamG == null) dart.nullFailed(I$[0], 215, 15, "streamG");
+        if (streamH == null) dart.nullFailed(I$[0], 216, 15, "streamH");
+        if (combiner == null) dart.nullFailed(I$[0], 217, 56, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 230, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)), C.as(values[$_get](2)), D.as(values[$_get](3)), E.as(values[$_get](4)), F.as(values[$_get](5)), G.as(values[$_get](6)), H.as(values[$_get](7)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static combine9(A, B, C, D, E, F, G, H, I, R, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI, combiner) {
+        if (streamA == null) dart.nullFailed(I$[0], 248, 15, "streamA");
+        if (streamB == null) dart.nullFailed(I$[0], 249, 15, "streamB");
+        if (streamC == null) dart.nullFailed(I$[0], 250, 15, "streamC");
+        if (streamD == null) dart.nullFailed(I$[0], 251, 15, "streamD");
+        if (streamE == null) dart.nullFailed(I$[0], 252, 15, "streamE");
+        if (streamF == null) dart.nullFailed(I$[0], 253, 15, "streamF");
+        if (streamG == null) dart.nullFailed(I$[0], 254, 15, "streamG");
+        if (streamH == null) dart.nullFailed(I$[0], 255, 15, "streamH");
+        if (streamI == null) dart.nullFailed(I$[0], 256, 15, "streamI");
+        if (combiner == null) dart.nullFailed(I$[0], 257, 61, "combiner");
+        return new (combine_latest.CombineLatestStream$(dart.dynamic, R)).new(T$.JSArrayOfStream().of([streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI]), dart.fn(values => {
+          if (values == null) dart.nullFailed(I$[0], 271, 24, "values");
+          return combiner(A.as(values[$_get](0)), B.as(values[$_get](1)), C.as(values[$_get](2)), D.as(values[$_get](3)), E.as(values[$_get](4)), F.as(values[$_get](5)), G.as(values[$_get](6)), H.as(values[$_get](7)), I.as(values[$_get](8)));
+        }, dart.fnType(R, [core.List])));
+      }
+      static _buildController(T, R, streams, combiner) {
+        let t0;
+        if (streams == null) dart.nullFailed(I$[0], 287, 25, "streams");
+        if (combiner == null) dart.nullFailed(I$[0], 288, 32, "combiner");
+        if (dart.test(streams[$isEmpty])) {
+          t0 = async.StreamController$(R).new();
+          return (() => {
+            t0.close();
+            return t0;
+          })();
+        }
+        let len = streams[$length];
+        let subscriptions = null;
+        let subscriptions$35isSet = false;
+        function subscriptions$35get() {
+          return subscriptions$35isSet ? subscriptions : dart.throw(new _internal.LateError.localNI("subscriptions"));
+        }
+        dart.fn(subscriptions$35get, T$.VoidToListOfStreamSubscription());
+        function subscriptions$35set(t3) {
+          if (t3 == null) dart.nullFailed(I$[0], 295, 44, "null");
+          subscriptions$35isSet = true;
+          return subscriptions = t3;
+        }
+        dart.fn(subscriptions$35set, T$.ListOfStreamSubscriptionTodynamic());
+        let controller = null;
+        let controller$35isSet = false;
+        function controller$35get() {
+          return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+        }
+        dart.fn(controller$35get, dart.fnType(async.StreamController$(R), []));
+        function controller$35set(t8) {
+          if (t8 == null) dart.nullFailed(I$[0], 296, 30, "null");
+          controller$35isSet = true;
+          return controller = t8;
+        }
+        dart.fn(controller$35set, dart.fnType(dart.dynamic, [async.StreamController$(R)]));
+        controller$35set(async.StreamController$(R).new({sync: true, onListen: dart.fn(() => {
+            let values = core.List$(dart.nullable(T)).filled(len, null);
+            let triggered = 0;
+            let completed = 0;
+            let index = 0;
+            let allHaveEvent = dart.fn(() => triggered === len, T$.VoidTobool());
+            let onDone = dart.fn(() => {
+              if ((completed = completed + 1) === len) controller$35get().close();
+            }, T$.VoidToNull());
+            let onUpdate = dart.fn(index => {
+              if (index == null) dart.nullFailed(I$[0], 309, 31, "index");
+              return dart.fn(value => {
+                let t11, t10;
+                t10 = index;
+                t11 = value;
+                values[$_set](t10, t11);
+                return t11;
+              }, dart.fnType(T, [T]));
+            }, dart.fnType(dart.fnType(T, [T]), [core.int]));
+            subscriptions$35set(streams[$map](async.StreamSubscription$(T), dart.fn(stream => {
+              let t10;
+              if (stream == null) dart.nullFailed(I$[0], 311, 38, "stream");
+              let onUpdateForStream = onUpdate((t10 = index, index = t10 + 1, t10));
+              let hasFirstEvent = false;
+              return stream.listen(dart.fn(value => {
+                onUpdateForStream(value);
+                if (!hasFirstEvent) {
+                  hasFirstEvent = true;
+                  triggered = triggered + 1;
+                }
+                if (dart.test(allHaveEvent())) {
+                  try {
+                    controller$35get().add(combiner(core.List$(T).unmodifiable(values)));
+                  } catch (e$) {
+                    let e = dart.getThrown(e$);
+                    let s = dart.stackTrace(e$);
+                    if (core.Object.is(e)) {
+                      controller$35get().addError(e, s);
+                    } else
+                      throw e$;
+                  }
+                }
+              }, dart.fnType(dart.void, [T])), {onError: dart.bind(controller$35get(), 'addError'), onDone: onDone});
+            }, dart.fnType(async.StreamSubscription$(T), [async.Stream$(T)])))[$toList]({growable: false}));
+          }, T$.VoidTovoid()), onPause: dart.fn(() => subscriptions$35get()[$forEach](dart.fn(subscription => {
+            if (subscription == null) dart.nullFailed(I$[0], 338, 34, "subscription");
+            return subscription.pause();
+          }, T$.StreamSubscriptionTovoid())), T$.VoidTovoid()), onResume: dart.fn(() => subscriptions$35get()[$forEach](dart.fn(subscription => {
+            if (subscription == null) dart.nullFailed(I$[0], 340, 34, "subscription");
+            return subscription.resume();
+          }, T$.StreamSubscriptionTovoid())), T$.VoidTovoid()), onCancel: dart.fn(() => async.Future.wait(dart.dynamic, subscriptions$35get()[$map](async.Future, dart.fn(subscription => {
+            if (subscription == null) dart.nullFailed(I$[0], 342, 30, "subscription");
+            return subscription.cancel();
+          }, T$.StreamSubscriptionToFutureOfvoid()))), T$.VoidToFutureOfList())}));
+        return controller$35get();
+      }
+    }
+    (CombineLatestStream.new = function(streams, combiner) {
+      if (streams == null) dart.nullFailed(I$[0], 58, 25, "streams");
+      if (combiner == null) dart.nullFailed(I$[0], 59, 32, "combiner");
+      CombineLatestStream.__proto__.new.call(this, combine_latest.CombineLatestStream._buildController(T, R, streams, combiner).stream);
+      ;
+    }).prototype = CombineLatestStream.prototype;
+    dart.addTypeTests(CombineLatestStream);
+    CombineLatestStream.prototype[_is_CombineLatestStream_default] = true;
+    dart.addTypeCaches(CombineLatestStream);
+    dart.setLibraryUri(CombineLatestStream, I$[1]);
+    return CombineLatestStream;
+  });
+  combine_latest.CombineLatestStream = combine_latest.CombineLatestStream$();
+  dart.addTypeTests(combine_latest.CombineLatestStream, _is_CombineLatestStream_default);
+  dart.trackLibraries("packages/rxdart/src/streams/combine_latest.dart", {
+    "package:rxdart/src/streams/combine_latest.dart": combine_latest
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["combine_latest.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/rxdart/src/streams/combine_latest.dart.lib.js"}');
+  // Exports:
+  return {
+    src__streams__combine_latest: combine_latest
+  };
+}));
+
+//# sourceMappingURL=combine_latest.dart.lib.js.map

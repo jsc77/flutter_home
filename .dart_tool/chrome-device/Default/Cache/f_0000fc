@@ -1,0 +1,530 @@
+define(['dart_sdk', 'packages/awesome_notifications/src/enumerators/group_sort.dart', 'packages/awesome_notifications/src/enumerators/group_alert_behaviour.dart', 'packages/awesome_notifications/src/enumerators/notification_importance.dart', 'packages/awesome_notifications/src/enumerators/notification_layout.dart', 'packages/awesome_notifications/src/enumerators/notification_privacy.dart', 'packages/awesome_notifications/src/enumerators/action_button_type.dart', 'packages/awesome_notifications/src/enumerators/default_ringtone_type.dart', 'packages/flutter/src/material/colors.dart'], (function load__packages__awesome_notifications__src__definitions_dart(dart_sdk, packages__awesome_notifications__src__enumerators__group_sort$46dart, packages__awesome_notifications__src__enumerators__group_alert_behaviour$46dart, packages__awesome_notifications__src__enumerators__notification_importance$46dart, packages__awesome_notifications__src__enumerators__notification_layout$46dart, packages__awesome_notifications__src__enumerators__notification_privacy$46dart, packages__awesome_notifications__src__enumerators__action_button_type$46dart, packages__awesome_notifications__src__enumerators__default_ringtone_type$46dart, packages__flutter__src__material__colors$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const _js_helper = dart_sdk._js_helper;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const group_sort = packages__awesome_notifications__src__enumerators__group_sort$46dart.src__enumerators__group_sort;
+  const group_alert_behaviour = packages__awesome_notifications__src__enumerators__group_alert_behaviour$46dart.src__enumerators__group_alert_behaviour;
+  const notification_importance = packages__awesome_notifications__src__enumerators__notification_importance$46dart.src__enumerators__notification_importance;
+  const notification_layout = packages__awesome_notifications__src__enumerators__notification_layout$46dart.src__enumerators__notification_layout;
+  const notification_privacy = packages__awesome_notifications__src__enumerators__notification_privacy$46dart.src__enumerators__notification_privacy;
+  const action_button_type = packages__awesome_notifications__src__enumerators__action_button_type$46dart.src__enumerators__action_button_type;
+  const default_ringtone_type = packages__awesome_notifications__src__enumerators__default_ringtone_type$46dart.src__enumerators__default_ringtone_type;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  var definitions = Object.create(dart.library);
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    IdentityMapOfString$ObjectN: () => (T.IdentityMapOfString$ObjectN = dart.constFn(_js_helper.IdentityMap$(core.String, T.ObjectN())))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var I = ["package:awesome_notifications/src/definitions.dart"];
+  definitions.Definitions = class Definitions extends core.Object {};
+  (definitions.Definitions.new = function() {
+    ;
+  }).prototype = definitions.Definitions.prototype;
+  dart.addTypeTests(definitions.Definitions);
+  dart.addTypeCaches(definitions.Definitions);
+  dart.setLibraryUri(definitions.Definitions, I[0]);
+  dart.defineLazy(definitions.Definitions, {
+    /*definitions.Definitions.initialValues*/get initialValues() {
+      return new (T.IdentityMapOfString$ObjectN()).from(["id", 0, "repeats", false, "groupSort", group_sort.GroupSort.Desc, "groupAlertBehavior", group_alert_behaviour.GroupAlertBehavior.All, "importance", notification_importance.NotificationImportance.Default, "notificationLayout", notification_layout.NotificationLayout.Default, "defaultPrivacy", notification_privacy.NotificationPrivacy.Private, "buttonType", action_button_type.ActionButtonType.Default, "privacy", notification_privacy.NotificationPrivacy.Private, "defaultRingtoneType", default_ringtone_type.DefaultRingtoneType.Notification, "channelKey", "miscellaneous", "channelDescription", "Notifications", "channelName", "Notifications", "showWhen", true, "channelShowBadge", false, "enabled", true, "payload", null, "enableVibration", true, "color", colors.Colors.black, "ledColor", colors.Colors.white, "enableLights", true, "ledOffMs", 700, "ledOnMs", 300, "playSound", true, "autoCancel", true, "locked", false, "ticker", "ticker", "allowWhileIdle", false, "onlyAlertOnce", false]);
+    },
+    set initialValues(_) {}
+  }, false);
+  dart.defineLazy(definitions, {
+    /*definitions.BROADCAST_FCM_TOKEN*/get BROADCAST_FCM_TOKEN() {
+      return "me.carda.awesome_notifications.services.firebase.TOKEN";
+    },
+    /*definitions.EXTRA_BROADCAST_FCM_TOKEN*/get EXTRA_BROADCAST_FCM_TOKEN() {
+      return "token";
+    },
+    /*definitions.BROADCAST_MESSAGE*/get BROADCAST_MESSAGE() {
+      return "me.carda.awesome_notifications.services.firebase.NOTIFICATION";
+    },
+    /*definitions.EXTRA_BROADCAST_MESSAGE*/get EXTRA_BROADCAST_MESSAGE() {
+      return "notification";
+    },
+    /*definitions.INITIALIZE_DEBUG_MODE*/get INITIALIZE_DEBUG_MODE() {
+      return "debug";
+    },
+    /*definitions.INITIALIZE_DEFAULT_ICON*/get INITIALIZE_DEFAULT_ICON() {
+      return "defaultIcon";
+    },
+    /*definitions.INITIALIZE_CHANNELS*/get INITIALIZE_CHANNELS() {
+      return "initializeChannels";
+    },
+    /*definitions.NOTIFICATION_CONTENT*/get NOTIFICATION_CONTENT() {
+      return "content";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE*/get NOTIFICATION_SCHEDULE() {
+      return "schedule";
+    },
+    /*definitions.NOTIFICATION_BUTTONS*/get NOTIFICATION_BUTTONS() {
+      return "actionButtons";
+    },
+    /*definitions.FOREGROUND_NOTIFICATION_DATA*/get FOREGROUND_NOTIFICATION_DATA() {
+      return "notificationData";
+    },
+    /*definitions.FOREGROUND_START_TYPE*/get FOREGROUND_START_TYPE() {
+      return "startType";
+    },
+    /*definitions.FOREGROUND_HAS_FOREGROUND*/get FOREGROUND_HAS_FOREGROUND() {
+      return "hasForegroundServiceType";
+    },
+    /*definitions.FOREGROUND_SERVICE_TYPE*/get FOREGROUND_SERVICE_TYPE() {
+      return "foregroundServiceType";
+    },
+    /*definitions.APP_LIFECYCLE_FOREGROUND*/get APP_LIFECYCLE_FOREGROUND() {
+      return "FOREGROUND";
+    },
+    /*definitions.APP_LIFECYCLE_BACKGROUND*/get APP_LIFECYCLE_BACKGROUND() {
+      return "BACKGROUND";
+    },
+    /*definitions.APP_LIFECYCLE_APP_KILLED*/get APP_LIFECYCLE_APP_KILLED() {
+      return "APP_KILLED";
+    },
+    /*definitions.PUSH_SOURCE_FIREBASE*/get PUSH_SOURCE_FIREBASE() {
+      return "Firebase";
+    },
+    /*definitions.PUSH_SOURCE_ONE_SIGNAL*/get PUSH_SOURCE_ONE_SIGNAL() {
+      return "OneSignal";
+    },
+    /*definitions.PUSH_SOURCE_LOCAL_NOTIFICATION*/get PUSH_SOURCE_LOCAL_NOTIFICATION() {
+      return "Local";
+    },
+    /*definitions.SHARED_PREFERENCES_KEY*/get SHARED_PREFERENCES_KEY() {
+      return "notification_plugin_cache";
+    },
+    /*definitions.CHANNEL_FLUTTER_PLUGIN*/get CHANNEL_FLUTTER_PLUGIN() {
+      return "awesome_notifications";
+    },
+    /*definitions.CHANNEL_METHOD_INITIALIZE*/get CHANNEL_METHOD_INITIALIZE() {
+      return "initialize";
+    },
+    /*definitions.CHANNEL_METHOD_GET_DRAWABLE_DATA*/get CHANNEL_METHOD_GET_DRAWABLE_DATA() {
+      return "getDrawableData";
+    },
+    /*definitions.CHANNEL_METHOD_IS_NOTIFICATION_ALLOWED*/get CHANNEL_METHOD_IS_NOTIFICATION_ALLOWED() {
+      return "isNotificationAllowed";
+    },
+    /*definitions.CHANNEL_METHOD_REQUEST_NOTIFICATIONS*/get CHANNEL_METHOD_REQUEST_NOTIFICATIONS() {
+      return "requestNotifications";
+    },
+    /*definitions.CHANNEL_METHOD_SET_NOTIFICATION_CHANNEL*/get CHANNEL_METHOD_SET_NOTIFICATION_CHANNEL() {
+      return "setNotificationChannel";
+    },
+    /*definitions.CHANNEL_METHOD_REMOVE_NOTIFICATION_CHANNEL*/get CHANNEL_METHOD_REMOVE_NOTIFICATION_CHANNEL() {
+      return "removeNotificationChannel";
+    },
+    /*definitions.CHANNEL_METHOD_IS_FCM_AVAILABLE*/get CHANNEL_METHOD_IS_FCM_AVAILABLE() {
+      return "isFirebaseAvailable";
+    },
+    /*definitions.CHANNEL_METHOD_GET_FCM_TOKEN*/get CHANNEL_METHOD_GET_FCM_TOKEN() {
+      return "getFirebaseToken";
+    },
+    /*definitions.CHANNEL_METHOD_NEW_FCM_TOKEN*/get CHANNEL_METHOD_NEW_FCM_TOKEN() {
+      return "newTokenReceived";
+    },
+    /*definitions.CHANNEL_METHOD_CREATE_NOTIFICATION*/get CHANNEL_METHOD_CREATE_NOTIFICATION() {
+      return "createNewNotification";
+    },
+    /*definitions.CHANNEL_METHOD_NOTIFICATION_CREATED*/get CHANNEL_METHOD_NOTIFICATION_CREATED() {
+      return "notificationCreated";
+    },
+    /*definitions.CHANNEL_METHOD_NOTIFICATION_DISPLAYED*/get CHANNEL_METHOD_NOTIFICATION_DISPLAYED() {
+      return "notificationDisplayed";
+    },
+    /*definitions.CHANNEL_METHOD_NOTIFICATION_DISMISSED*/get CHANNEL_METHOD_NOTIFICATION_DISMISSED() {
+      return "notificationDismissed";
+    },
+    /*definitions.CHANNEL_METHOD_ACTION_RECEIVED*/get CHANNEL_METHOD_ACTION_RECEIVED() {
+      return "receivedAction";
+    },
+    /*definitions.CHANNEL_METHOD_NOTIFICATION_AT_LAUNCH*/get CHANNEL_METHOD_NOTIFICATION_AT_LAUNCH() {
+      return "notificationAtLaunch";
+    },
+    /*definitions.CHANNEL_METHOD_LIST_ALL_SCHEDULES*/get CHANNEL_METHOD_LIST_ALL_SCHEDULES() {
+      return "listAllSchedules";
+    },
+    /*definitions.CHANNEL_METHOD_GET_BADGE_COUNT*/get CHANNEL_METHOD_GET_BADGE_COUNT() {
+      return "getBadgeCount";
+    },
+    /*definitions.CHANNEL_METHOD_SET_BADGE_COUNT*/get CHANNEL_METHOD_SET_BADGE_COUNT() {
+      return "setBadgeCount";
+    },
+    /*definitions.CHANNEL_METHOD_RESET_BADGE*/get CHANNEL_METHOD_RESET_BADGE() {
+      return "resetBadge";
+    },
+    /*definitions.CHANNEL_METHOD_DISMISS_NOTIFICATION*/get CHANNEL_METHOD_DISMISS_NOTIFICATION() {
+      return "dismissNotification";
+    },
+    /*definitions.CHANNEL_METHOD_CANCEL_NOTIFICATION*/get CHANNEL_METHOD_CANCEL_NOTIFICATION() {
+      return "cancelNotification";
+    },
+    /*definitions.CHANNEL_METHOD_CANCEL_SCHEDULE*/get CHANNEL_METHOD_CANCEL_SCHEDULE() {
+      return "cancelSchedule";
+    },
+    /*definitions.CHANNEL_METHOD_CANCEL_ALL_SCHEDULES*/get CHANNEL_METHOD_CANCEL_ALL_SCHEDULES() {
+      return "cancelAllSchedules";
+    },
+    /*definitions.CHANNEL_METHOD_DISMISS_ALL_NOTIFICATIONS*/get CHANNEL_METHOD_DISMISS_ALL_NOTIFICATIONS() {
+      return "dismissAllNotifications";
+    },
+    /*definitions.CHANNEL_METHOD_CANCEL_ALL_NOTIFICATIONS*/get CHANNEL_METHOD_CANCEL_ALL_NOTIFICATIONS() {
+      return "cancelAllNotifications";
+    },
+    /*definitions.CHANNEL_METHOD_GET_NEXT_DATE*/get CHANNEL_METHOD_GET_NEXT_DATE() {
+      return "getNextDate";
+    },
+    /*definitions.CHANNEL_FORCE_UPDATE*/get CHANNEL_FORCE_UPDATE() {
+      return "forceUpdate";
+    },
+    /*definitions.CHANNEL_METHOD_GET_UTC_TIMEZONE_IDENTIFIER*/get CHANNEL_METHOD_GET_UTC_TIMEZONE_IDENTIFIER() {
+      return "getUtcTimeZoneIdentifier";
+    },
+    /*definitions.CHANNEL_METHOD_GET_LOCAL_TIMEZONE_IDENTIFIER*/get CHANNEL_METHOD_GET_LOCAL_TIMEZONE_IDENTIFIER() {
+      return "getLocalTimeZoneIdentifier";
+    },
+    /*definitions.CHANNEL_METHOD_START_FOREGROUND*/get CHANNEL_METHOD_START_FOREGROUND() {
+      return "startForeground";
+    },
+    /*definitions.CHANNEL_METHOD_STOP_FOREGROUND*/get CHANNEL_METHOD_STOP_FOREGROUND() {
+      return "stopForeground";
+    },
+    /*definitions.DRAWABLE_RESOURCE_REFERENCE*/get DRAWABLE_RESOURCE_REFERENCE() {
+      return "drawable";
+    },
+    /*definitions.DEFAULT_ICON*/get DEFAULT_ICON() {
+      return "defaultIcon";
+    },
+    /*definitions.SELECT_NOTIFICATION*/get SELECT_NOTIFICATION() {
+      return "SELECT_NOTIFICATION";
+    },
+    /*definitions.NOTIFICATION_BUTTON_ACTION_PREFIX*/get NOTIFICATION_BUTTON_ACTION_PREFIX() {
+      return "ACTION_NOTIFICATION";
+    },
+    /*definitions.SCHEDULED_NOTIFICATIONS*/get SCHEDULED_NOTIFICATIONS() {
+      return "scheduled_notifications";
+    },
+    /*definitions.DATE_FORMAT*/get DATE_FORMAT() {
+      return "yyyy-MM-dd HH:mm:ss";
+    },
+    /*definitions.INVALID_ICON_ERROR_CODE*/get INVALID_ICON_ERROR_CODE() {
+      return "INVALID_ICON";
+    },
+    /*definitions.INVALID_LARGE_ICON_ERROR_CODE*/get INVALID_LARGE_ICON_ERROR_CODE() {
+      return "INVALID_LARGE_ICON";
+    },
+    /*definitions.INVALID_BIG_PICTURE_ERROR_CODE*/get INVALID_BIG_PICTURE_ERROR_CODE() {
+      return "INVALID_BIG_PICTURE";
+    },
+    /*definitions.INVALID_SOUND_ERROR_CODE*/get INVALID_SOUND_ERROR_CODE() {
+      return "INVALID_SOUND";
+    },
+    /*definitions.INVALID_LED_DETAILS_ERROR_CODE*/get INVALID_LED_DETAILS_ERROR_CODE() {
+      return "INVALID_LED_DETAILS";
+    },
+    /*definitions.INVALID_LED_DETAILS_ERROR_MESSAGE*/get INVALID_LED_DETAILS_ERROR_MESSAGE() {
+      return "Must specify both ledOnMs and ledOffMs to configure the blink cycle on older versions of Android before Oreo";
+    },
+    /*definitions.INVALID_DRAWABLE_RESOURCE_ERROR_MESSAGE*/get INVALID_DRAWABLE_RESOURCE_ERROR_MESSAGE() {
+      return "The resource %s could not be found. Please make sure it has been added as a drawable resource to your Android head project.";
+    },
+    /*definitions.INVALID_RAW_RESOURCE_ERROR_MESSAGE*/get INVALID_RAW_RESOURCE_ERROR_MESSAGE() {
+      return "The resource %s could not be found. Please make sure it has been added as a raw resource to your Android head project.";
+    },
+    /*definitions.NOTIFICATION_SYSTEM_ID*/get NOTIFICATION_SYSTEM_ID() {
+      return "id";
+    },
+    /*definitions.NOTIFICATION_ICON_RESOURCE_ID*/get NOTIFICATION_ICON_RESOURCE_ID() {
+      return "iconResourceId";
+    },
+    /*definitions.NOTIFICATION_ID*/get NOTIFICATION_ID() {
+      return "id";
+    },
+    /*definitions.NOTIFICATION_LAYOUT*/get NOTIFICATION_LAYOUT() {
+      return "notificationLayout";
+    },
+    /*definitions.NOTIFICATION_CREATED_SOURCE*/get NOTIFICATION_CREATED_SOURCE() {
+      return "createdSource";
+    },
+    /*definitions.NOTIFICATION_CREATED_LIFECYCLE*/get NOTIFICATION_CREATED_LIFECYCLE() {
+      return "createdLifeCycle";
+    },
+    /*definitions.NOTIFICATION_DISPLAYED_LIFECYCLE*/get NOTIFICATION_DISPLAYED_LIFECYCLE() {
+      return "displayedLifeCycle";
+    },
+    /*definitions.NOTIFICATION_ACTION_LIFECYCLE*/get NOTIFICATION_ACTION_LIFECYCLE() {
+      return "actionLifeCycle";
+    },
+    /*definitions.NOTIFICATION_CREATED_DATE*/get NOTIFICATION_CREATED_DATE() {
+      return "createdDate";
+    },
+    /*definitions.NOTIFICATION_DISPLAYED_DATE*/get NOTIFICATION_DISPLAYED_DATE() {
+      return "displayedDate";
+    },
+    /*definitions.NOTIFICATION_ACTION_DATE*/get NOTIFICATION_ACTION_DATE() {
+      return "actionDate";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_TIMEZONE*/get NOTIFICATION_SCHEDULE_TIMEZONE() {
+      return "timeZone";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_ERA*/get NOTIFICATION_SCHEDULE_ERA() {
+      return "era";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_YEAR*/get NOTIFICATION_SCHEDULE_YEAR() {
+      return "year";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_MONTH*/get NOTIFICATION_SCHEDULE_MONTH() {
+      return "month";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_DAY*/get NOTIFICATION_SCHEDULE_DAY() {
+      return "day";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_HOUR*/get NOTIFICATION_SCHEDULE_HOUR() {
+      return "hour";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_MINUTE*/get NOTIFICATION_SCHEDULE_MINUTE() {
+      return "minute";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_SECOND*/get NOTIFICATION_SCHEDULE_SECOND() {
+      return "second";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_MILLISECOND*/get NOTIFICATION_SCHEDULE_MILLISECOND() {
+      return "millisecond";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_WEEKDAY*/get NOTIFICATION_SCHEDULE_WEEKDAY() {
+      return "weekday";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_WEEKOFMONTH*/get NOTIFICATION_SCHEDULE_WEEKOFMONTH() {
+      return "weekOfMonth";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_WEEKOFYEAR*/get NOTIFICATION_SCHEDULE_WEEKOFYEAR() {
+      return "weekOfYear";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_INTERVAL*/get NOTIFICATION_SCHEDULE_INTERVAL() {
+      return "interval";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_ALLOW_WHILE_IDLE*/get NOTIFICATION_SCHEDULE_ALLOW_WHILE_IDLE() {
+      return "allowWhileIdle";
+    },
+    /*definitions.NOTIFICATION_SCHEDULE_REPEATS*/get NOTIFICATION_SCHEDULE_REPEATS() {
+      return "repeats";
+    },
+    /*definitions.NOTIFICATION_TITLE*/get NOTIFICATION_TITLE() {
+      return "title";
+    },
+    /*definitions.NOTIFICATION_BODY*/get NOTIFICATION_BODY() {
+      return "body";
+    },
+    /*definitions.NOTIFICATION_SUMMARY*/get NOTIFICATION_SUMMARY() {
+      return "summary";
+    },
+    /*definitions.NOTIFICATION_SHOW_WHEN*/get NOTIFICATION_SHOW_WHEN() {
+      return "showWhen";
+    },
+    /*definitions.NOTIFICATION_ACTION_KEY*/get NOTIFICATION_ACTION_KEY() {
+      return "actionKey";
+    },
+    /*definitions.NOTIFICATION_EXPANDABLE_BODY*/get NOTIFICATION_EXPANDABLE_BODY() {
+      return "expandableBody";
+    },
+    /*definitions.NOTIFICATION_JSON*/get NOTIFICATION_JSON() {
+      return "notificationJson";
+    },
+    /*definitions.NOTIFICATION_ACTION_BUTTONS*/get NOTIFICATION_ACTION_BUTTONS() {
+      return "actionButtons";
+    },
+    /*definitions.NOTIFICATION_BUTTON_KEY*/get NOTIFICATION_BUTTON_KEY() {
+      return "key";
+    },
+    /*definitions.NOTIFICATION_BUTTON_LABEL*/get NOTIFICATION_BUTTON_LABEL() {
+      return "label";
+    },
+    /*definitions.NOTIFICATION_BUTTON_INPUT*/get NOTIFICATION_BUTTON_INPUT() {
+      return "action_input";
+    },
+    /*definitions.NOTIFICATION_BUTTON_TYPE*/get NOTIFICATION_BUTTON_TYPE() {
+      return "buttonType";
+    },
+    /*definitions.NOTIFICATION_ENABLED*/get NOTIFICATION_ENABLED() {
+      return "enabled";
+    },
+    /*definitions.NOTIFICATION_PAYLOAD*/get NOTIFICATION_PAYLOAD() {
+      return "payload";
+    },
+    /*definitions.NOTIFICATION_INITIAL_FIXED_DATE*/get NOTIFICATION_INITIAL_FIXED_DATE() {
+      return "fixedDate";
+    },
+    /*definitions.NOTIFICATION_INITIAL_DATE_TIME*/get NOTIFICATION_INITIAL_DATE_TIME() {
+      return "initialDateTime";
+    },
+    /*definitions.NOTIFICATION_CRONTAB_SCHEDULE*/get NOTIFICATION_CRONTAB_SCHEDULE() {
+      return "crontabSchedule";
+    },
+    /*definitions.NOTIFICATION_PRECISE_SCHEDULES*/get NOTIFICATION_PRECISE_SCHEDULES() {
+      return "preciseSchedules";
+    },
+    /*definitions.NOTIFICATION_PLATFORM_CONFIGURATION*/get NOTIFICATION_PLATFORM_CONFIGURATION() {
+      return "platformConfiguration";
+    },
+    /*definitions.NOTIFICATION_PRIVATE_MESSAGE*/get NOTIFICATION_PRIVATE_MESSAGE() {
+      return "privateMessage";
+    },
+    /*definitions.NOTIFICATION_DEFAULT_PRIVACY*/get NOTIFICATION_DEFAULT_PRIVACY() {
+      return "defaultPrivacy";
+    },
+    /*definitions.NOTIFICATION_DEFAULT_RINGTONE_TYPE*/get NOTIFICATION_DEFAULT_RINGTONE_TYPE() {
+      return "defaultRingtoneType";
+    },
+    /*definitions.NOTIFICATION_PRIVACY*/get NOTIFICATION_PRIVACY() {
+      return "privacy";
+    },
+    /*definitions.NOTIFICATION_AUTO_CANCEL*/get NOTIFICATION_AUTO_CANCEL() {
+      return "autoCancel";
+    },
+    /*definitions.NOTIFICATION_LOCKED*/get NOTIFICATION_LOCKED() {
+      return "locked";
+    },
+    /*definitions.NOTIFICATION_ICON*/get NOTIFICATION_ICON() {
+      return "icon";
+    },
+    /*definitions.NOTIFICATION_PLAY_SOUND*/get NOTIFICATION_PLAY_SOUND() {
+      return "playSound";
+    },
+    /*definitions.NOTIFICATION_SOUND_PATH*/get NOTIFICATION_SOUND_PATH() {
+      return "sound";
+    },
+    /*definitions.NOTIFICATION_ENABLE_VIBRATION*/get NOTIFICATION_ENABLE_VIBRATION() {
+      return "enableVibration";
+    },
+    /*definitions.NOTIFICATION_VIBRATION_PATTERN*/get NOTIFICATION_VIBRATION_PATTERN() {
+      return "vibrationPattern";
+    },
+    /*definitions.NOTIFICATION_GROUP_KEY*/get NOTIFICATION_GROUP_KEY() {
+      return "groupKey";
+    },
+    /*definitions.NOTIFICATION_GROUP_SORT*/get NOTIFICATION_GROUP_SORT() {
+      return "groupSort";
+    },
+    /*definitions.NOTIFICATION_GROUP_ALERT_BEHAVIOR*/get NOTIFICATION_GROUP_ALERT_BEHAVIOR() {
+      return "groupAlertBehavior";
+    },
+    /*definitions.NOTIFICATION_ONLY_ALERT_ONCE*/get NOTIFICATION_ONLY_ALERT_ONCE() {
+      return "onlyAlertOnce";
+    },
+    /*definitions.NOTIFICATION_CHANNEL_KEY*/get NOTIFICATION_CHANNEL_KEY() {
+      return "channelKey";
+    },
+    /*definitions.NOTIFICATION_CHANNEL_NAME*/get NOTIFICATION_CHANNEL_NAME() {
+      return "channelName";
+    },
+    /*definitions.NOTIFICATION_CHANNEL_DESCRIPTION*/get NOTIFICATION_CHANNEL_DESCRIPTION() {
+      return "channelDescription";
+    },
+    /*definitions.NOTIFICATION_CHANNEL_SHOW_BADGE*/get NOTIFICATION_CHANNEL_SHOW_BADGE() {
+      return "channelShowBadge";
+    },
+    /*definitions.NOTIFICATION_IMPORTANCE*/get NOTIFICATION_IMPORTANCE() {
+      return "importance";
+    },
+    /*definitions.NOTIFICATION_COLOR*/get NOTIFICATION_COLOR() {
+      return "color";
+    },
+    /*definitions.NOTIFICATION_LARGE_ICON*/get NOTIFICATION_LARGE_ICON() {
+      return "largeIcon";
+    },
+    /*definitions.NOTIFICATION_BIG_PICTURE*/get NOTIFICATION_BIG_PICTURE() {
+      return "bigPicture";
+    },
+    /*definitions.NOTIFICATION_HIDE_LARGE_ICON_ON_EXPAND*/get NOTIFICATION_HIDE_LARGE_ICON_ON_EXPAND() {
+      return "hideLargeIconOnExpand";
+    },
+    /*definitions.NOTIFICATION_SHOW_PROGRESS*/get NOTIFICATION_SHOW_PROGRESS() {
+      return "showProgress";
+    },
+    /*definitions.NOTIFICATION_MAX_PROGRESS*/get NOTIFICATION_MAX_PROGRESS() {
+      return "maxProgress";
+    },
+    /*definitions.NOTIFICATION_PROGRESS*/get NOTIFICATION_PROGRESS() {
+      return "progress";
+    },
+    /*definitions.NOTIFICATION_INDETERMINATE*/get NOTIFICATION_INDETERMINATE() {
+      return "indeterminate";
+    },
+    /*definitions.NOTIFICATION_PERSON*/get NOTIFICATION_PERSON() {
+      return "person";
+    },
+    /*definitions.NOTIFICATION_CONVERSATION_TITLE*/get NOTIFICATION_CONVERSATION_TITLE() {
+      return "conversationTitle";
+    },
+    /*definitions.NOTIFICATION_GROUP_CONVERSATION*/get NOTIFICATION_GROUP_CONVERSATION() {
+      return "groupConversation";
+    },
+    /*definitions.NOTIFICATION_MESSAGES*/get NOTIFICATION_MESSAGES() {
+      return "messages";
+    },
+    /*definitions.NOTIFICATION_TEXT*/get NOTIFICATION_TEXT() {
+      return "text";
+    },
+    /*definitions.NOTIFICATION_TIMESTAMP*/get NOTIFICATION_TIMESTAMP() {
+      return "timestamp";
+    },
+    /*definitions.NOTIFICATION_BOT*/get NOTIFICATION_BOT() {
+      return "bot";
+    },
+    /*definitions.NOTIFICATION_IMPORTANT*/get NOTIFICATION_IMPORTANT() {
+      return "important";
+    },
+    /*definitions.NOTIFICATION_KEY*/get NOTIFICATION_KEY() {
+      return "key";
+    },
+    /*definitions.NOTIFICATION_NAME*/get NOTIFICATION_NAME() {
+      return "name";
+    },
+    /*definitions.NOTIFICATION_URI*/get NOTIFICATION_URI() {
+      return "uri";
+    },
+    /*definitions.NOTIFICATION_DATA_MIME_TYPE*/get NOTIFICATION_DATA_MIME_TYPE() {
+      return "dataMimeType";
+    },
+    /*definitions.NOTIFICATION_DATA_URI*/get NOTIFICATION_DATA_URI() {
+      return "dataUri";
+    },
+    /*definitions.NOTIFICATION_CHANNEL_ACTION*/get NOTIFICATION_CHANNEL_ACTION() {
+      return "channelAction";
+    },
+    /*definitions.NOTIFICATION_ENABLE_LIGHTS*/get NOTIFICATION_ENABLE_LIGHTS() {
+      return "enableLights";
+    },
+    /*definitions.NOTIFICATION_LED_COLOR*/get NOTIFICATION_LED_COLOR() {
+      return "ledColor";
+    },
+    /*definitions.NOTIFICATION_LED_ON_MS*/get NOTIFICATION_LED_ON_MS() {
+      return "ledOnMs";
+    },
+    /*definitions.NOTIFICATION_LED_OFF_MS*/get NOTIFICATION_LED_OFF_MS() {
+      return "ledOffMs";
+    },
+    /*definitions.NOTIFICATION_TICKER*/get NOTIFICATION_TICKER() {
+      return "ticker";
+    },
+    /*definitions.NOTIFICATION_ALLOW_WHILE_IDLE*/get NOTIFICATION_ALLOW_WHILE_IDLE() {
+      return "allowWhileIdle";
+    }
+  }, false);
+  dart.trackLibraries("packages/awesome_notifications/src/definitions.dart", {
+    "package:awesome_notifications/src/definitions.dart": definitions
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["definitions.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/awesome_notifications/src/definitions.dart.lib.js"}');
+  // Exports:
+  return {
+    src__definitions: definitions
+  };
+}));
+
+//# sourceMappingURL=definitions.dart.lib.js.map

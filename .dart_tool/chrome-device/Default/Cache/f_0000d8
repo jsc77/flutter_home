@@ -1,0 +1,670 @@
+define(['dart_sdk', 'packages/flutter/src/painting/box_border.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/alignment.dart'], (function load__packages__avatar_glow__avatar_glow_dart(dart_sdk, packages__flutter__src__painting__box_border$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__alignment$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const async = dart_sdk.async;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const box_border = packages__flutter__src__painting__box_border$46dart.src__painting__box_border;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const animations = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animations;
+  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  var avatar_glow = Object.create(dart.library);
+  var $clamp = dartx.clamp;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    AvatarGlowL: () => (T.AvatarGlowL = dart.constFn(dart.legacy(avatar_glow.AvatarGlow)))(),
+    doubleL: () => (T.doubleL = dart.constFn(dart.legacy(core.double)))(),
+    TweenOfdoubleL: () => (T.TweenOfdoubleL = dart.constFn(tween.Tween$(T.doubleL())))(),
+    AnimationOfdoubleL: () => (T.AnimationOfdoubleL = dart.constFn(animation.Animation$(T.doubleL())))(),
+    AnimationLOfdoubleL: () => (T.AnimationLOfdoubleL = dart.constFn(dart.legacy(T.AnimationOfdoubleL())))(),
+    FutureOfNull: () => (T.FutureOfNull = dart.constFn(async.Future$(core.Null)))(),
+    FutureLOfNull: () => (T.FutureLOfNull = dart.constFn(dart.legacy(T.FutureOfNull())))(),
+    AnimationStatusL: () => (T.AnimationStatusL = dart.constFn(dart.legacy(animation.AnimationStatus)))(),
+    AnimationStatusLToFutureLOfNull: () => (T.AnimationStatusLToFutureLOfNull = dart.constFn(dart.fnType(T.FutureLOfNull(), [T.AnimationStatusL()])))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    ContainerL: () => (T.ContainerL = dart.constFn(dart.legacy(container.Container)))(),
+    BuildContextL: () => (T.BuildContextL = dart.constFn(dart.legacy(framework.BuildContext)))(),
+    WidgetL: () => (T.WidgetL = dart.constFn(dart.legacy(framework.Widget)))(),
+    BuildContextLAndWidgetLToContainerL: () => (T.BuildContextLAndWidgetLToContainerL = dart.constFn(dart.fnType(T.ContainerL(), [T.BuildContextL(), T.WidgetL()])))(),
+    JSArrayOfWidgetL: () => (T.JSArrayOfWidgetL = dart.constFn(_interceptors.JSArray$(T.WidgetL())))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: box_border.BoxShape.prototype,
+        [_name]: "BoxShape.circle",
+        index: 1
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 2000000
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 100000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 0.2,
+        [Cubic_b]: 0,
+        [Cubic_a]: 0.4
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967295.0
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 21,
+        [_Location_line]: 165,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 21,
+        [_Location_line]: 166,
+        [_Location_file]: null
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 21,
+        [_Location_line]: 167,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.constList([C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], T._LocationL());
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[6] || CT.C6,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 164,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 17,
+        [_Location_line]: 157,
+        [_Location_file]: null
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 17,
+        [_Location_line]: 158,
+        [_Location_file]: null
+      });
+    },
+    get C11() {
+      return C[11] = dart.constList([C[12] || CT.C12, C[13] || CT.C13], T._LocationL());
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[11] || CT.C11,
+        [_Location_name]: null,
+        [_Location_column]: 15,
+        [_Location_line]: 156,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 27,
+        [_Location_line]: 179,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 27,
+        [_Location_line]: 180,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 27,
+        [_Location_line]: 181,
+        [_Location_file]: null
+      });
+    },
+    get C15() {
+      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18], T._LocationL());
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[15] || CT.C15,
+        [_Location_name]: null,
+        [_Location_column]: 32,
+        [_Location_line]: 178,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 23,
+        [_Location_line]: 173,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 23,
+        [_Location_line]: 174,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 21,
+        [_Location_line]: 172,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 36,
+        [_Location_line]: 185,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 49,
+        [_Location_line]: 185,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.constList([C[26] || CT.C26, C[27] || CT.C27], T._LocationL());
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[25] || CT.C25,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 185,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: basic.SizedBox.prototype,
+        [Widget__location]: C[24] || CT.C24,
+        [Widget_key]: null,
+        [SingleChildRenderObjectWidget_child]: null,
+        [SizedBox_height]: 0,
+        [SizedBox_width]: 0
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "alignment",
+        [_Location_column]: 13,
+        [_Location_line]: 154,
+        [_Location_file]: null
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 155,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.constList([C[30] || CT.C30, C[31] || CT.C31], T._LocationL());
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[29] || CT.C29,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 153,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 11,
+        [_Location_line]: 151,
+        [_Location_file]: null
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 11,
+        [_Location_line]: 152,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 153,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35, C[36] || CT.C36], T._LocationL());
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 150,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "animation",
+        [_Location_column]: 7,
+        [_Location_line]: 139,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 140,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 141,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.constList([C[39] || CT.C39, C[40] || CT.C40, C[41] || CT.C41], T._LocationL());
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[38] || CT.C38,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 138,
+        [_Location_file]: "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/avatar_glow-1.2.0/lib/avatar_glow.dart"
+      });
+    }
+  }, false);
+  var C = Array(42).fill(void 0);
+  var I = ["package:avatar_glow/avatar_glow.dart"];
+  var child$ = dart.privateName(avatar_glow, "AvatarGlow.child");
+  var endRadius$ = dart.privateName(avatar_glow, "AvatarGlow.endRadius");
+  var shape$ = dart.privateName(avatar_glow, "AvatarGlow.shape");
+  var duration$ = dart.privateName(avatar_glow, "AvatarGlow.duration");
+  var repeat$ = dart.privateName(avatar_glow, "AvatarGlow.repeat");
+  var animate$ = dart.privateName(avatar_glow, "AvatarGlow.animate");
+  var repeatPauseDuration$ = dart.privateName(avatar_glow, "AvatarGlow.repeatPauseDuration");
+  var curve$ = dart.privateName(avatar_glow, "AvatarGlow.curve");
+  var showTwoGlows$ = dart.privateName(avatar_glow, "AvatarGlow.showTwoGlows");
+  var glowColor$ = dart.privateName(avatar_glow, "AvatarGlow.glowColor");
+  var startDelay$ = dart.privateName(avatar_glow, "AvatarGlow.startDelay");
+  var _name = dart.privateName(box_border, "_name");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var Cubic_d = dart.privateName(curves, "Cubic.d");
+  var Cubic_c = dart.privateName(curves, "Cubic.c");
+  var Cubic_b = dart.privateName(curves, "Cubic.b");
+  var Cubic_a = dart.privateName(curves, "Cubic.a");
+  var Color_value = dart.privateName(ui, "Color.value");
+  avatar_glow.AvatarGlow = class AvatarGlow extends framework.StatefulWidget {
+    get child() {
+      return this[child$];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    get endRadius() {
+      return this[endRadius$];
+    }
+    set endRadius(value) {
+      super.endRadius = value;
+    }
+    get shape() {
+      return this[shape$];
+    }
+    set shape(value) {
+      super.shape = value;
+    }
+    get duration() {
+      return this[duration$];
+    }
+    set duration(value) {
+      super.duration = value;
+    }
+    get repeat() {
+      return this[repeat$];
+    }
+    set repeat(value) {
+      super.repeat = value;
+    }
+    get animate() {
+      return this[animate$];
+    }
+    set animate(value) {
+      super.animate = value;
+    }
+    get repeatPauseDuration() {
+      return this[repeatPauseDuration$];
+    }
+    set repeatPauseDuration(value) {
+      super.repeatPauseDuration = value;
+    }
+    get curve() {
+      return this[curve$];
+    }
+    set curve(value) {
+      super.curve = value;
+    }
+    get showTwoGlows() {
+      return this[showTwoGlows$];
+    }
+    set showTwoGlows(value) {
+      super.showTwoGlows = value;
+    }
+    get glowColor() {
+      return this[glowColor$];
+    }
+    set glowColor(value) {
+      super.glowColor = value;
+    }
+    get startDelay() {
+      return this[startDelay$];
+    }
+    set startDelay(value) {
+      super.startDelay = value;
+    }
+    createState() {
+      return new avatar_glow._AvatarGlowState.new();
+    }
+  };
+  (avatar_glow.AvatarGlow.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let endRadius = opts && 'endRadius' in opts ? opts.endRadius : null;
+    let shape = opts && 'shape' in opts ? opts.shape : C[0] || CT.C0;
+    let duration = opts && 'duration' in opts ? opts.duration : C[1] || CT.C1;
+    let repeat = opts && 'repeat' in opts ? opts.repeat : true;
+    let animate = opts && 'animate' in opts ? opts.animate : true;
+    let repeatPauseDuration = opts && 'repeatPauseDuration' in opts ? opts.repeatPauseDuration : C[2] || CT.C2;
+    let curve = opts && 'curve' in opts ? opts.curve : C[3] || CT.C3;
+    let showTwoGlows = opts && 'showTwoGlows' in opts ? opts.showTwoGlows : true;
+    let glowColor = opts && 'glowColor' in opts ? opts.glowColor : C[4] || CT.C4;
+    let startDelay = opts && 'startDelay' in opts ? opts.startDelay : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[child$] = child;
+    this[endRadius$] = endRadius;
+    this[shape$] = shape;
+    this[duration$] = duration;
+    this[repeat$] = repeat;
+    this[animate$] = animate;
+    this[repeatPauseDuration$] = repeatPauseDuration;
+    this[curve$] = curve;
+    this[showTwoGlows$] = showTwoGlows;
+    this[glowColor$] = glowColor;
+    this[startDelay$] = startDelay;
+    avatar_glow.AvatarGlow.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = avatar_glow.AvatarGlow.prototype;
+  dart.addTypeTests(avatar_glow.AvatarGlow);
+  dart.addTypeCaches(avatar_glow.AvatarGlow);
+  dart.setMethodSignature(avatar_glow.AvatarGlow, () => ({
+    __proto__: dart.getMethods(avatar_glow.AvatarGlow.__proto__),
+    createState: dart.fnType(dart.legacy(avatar_glow._AvatarGlowState), [])
+  }));
+  dart.setLibraryUri(avatar_glow.AvatarGlow, I[0]);
+  dart.setFieldSignature(avatar_glow.AvatarGlow, () => ({
+    __proto__: dart.getFields(avatar_glow.AvatarGlow.__proto__),
+    child: dart.finalFieldType(dart.legacy(framework.Widget)),
+    endRadius: dart.finalFieldType(dart.legacy(core.double)),
+    shape: dart.finalFieldType(dart.legacy(box_border.BoxShape)),
+    duration: dart.finalFieldType(dart.legacy(core.Duration)),
+    repeat: dart.finalFieldType(dart.legacy(core.bool)),
+    animate: dart.finalFieldType(dart.legacy(core.bool)),
+    repeatPauseDuration: dart.finalFieldType(dart.legacy(core.Duration)),
+    curve: dart.finalFieldType(dart.legacy(curves.Curve)),
+    showTwoGlows: dart.finalFieldType(dart.legacy(core.bool)),
+    glowColor: dart.finalFieldType(dart.legacy(ui.Color)),
+    startDelay: dart.finalFieldType(dart.legacy(core.Duration))
+  }));
+  var _createAnimation = dart.privateName(avatar_glow, "_createAnimation");
+  var _startAnimation = dart.privateName(avatar_glow, "_startAnimation");
+  var _stopAnimation = dart.privateName(avatar_glow, "_stopAnimation");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var Widget__location = dart.privateName(framework, "Widget._location");
+  var Widget_key = dart.privateName(framework, "Widget.key");
+  var SingleChildRenderObjectWidget_child = dart.privateName(framework, "SingleChildRenderObjectWidget.child");
+  var SizedBox_height = dart.privateName(basic, "SizedBox.height");
+  var SizedBox_width = dart.privateName(basic, "SizedBox.width");
+  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(dart.legacy(avatar_glow.AvatarGlow)) {};
+  (State_SingleTickerProviderStateMixin$36.new = function() {
+    ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(avatar_glow.AvatarGlow))[dart.mixinNew].call(this);
+    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(dart.legacy(avatar_glow.AvatarGlow)));
+  avatar_glow._AvatarGlowState = class _AvatarGlowState extends State_SingleTickerProviderStateMixin$36 {
+    initState() {
+      this.controller = new animation_controller.AnimationController.new({duration: this.widget.duration, vsync: this});
+      this[_createAnimation]();
+      if (dart.test(this.widget.animate)) {
+        this[_startAnimation]();
+      }
+      super.initState();
+    }
+    didUpdateWidget(oldWidget) {
+      T.AvatarGlowL().as(oldWidget);
+      if (!dart.equals(this.widget.duration, oldWidget.duration) || !dart.equals(this.widget.curve, oldWidget.curve) || this.widget.endRadius != oldWidget.endRadius) {
+        this.controller.duration = this.widget.duration;
+        this[_createAnimation]();
+      }
+      if (this.widget.animate != oldWidget.animate) {
+        if (dart.test(this.widget.animate)) {
+          this[_startAnimation]();
+        } else {
+          this[_stopAnimation]();
+        }
+      }
+      super.didUpdateWidget(oldWidget);
+    }
+    [_createAnimation]() {
+      let curve = new animations.CurvedAnimation.new({parent: this.controller, curve: this.widget.curve});
+      this.smallDiscAnimation = new (T.TweenOfdoubleL()).new({begin: dart.notNull(this.widget.endRadius) * 2 / 6, end: dart.notNull(this.widget.endRadius) * 2 * (3 / 4)}).animate(T.AnimationLOfdoubleL().as(curve));
+      this.bigDiscAnimation = new (T.TweenOfdoubleL()).new({begin: 0.0, end: dart.notNull(this.widget.endRadius) * 2}).animate(T.AnimationLOfdoubleL().as(curve));
+      this.alphaAnimation = new (T.TweenOfdoubleL()).new({begin: 0.3, end: 0.0}).animate(this.controller);
+      this.controller.removeStatusListener(this.listener);
+      this.listener = dart.fn(_ => async.async(core.Null, (function*() {
+        if (this.controller.status == animation.AnimationStatus.completed) {
+          yield async.Future.delayed(this.widget.repeatPauseDuration);
+          if (dart.test(this.mounted) && dart.test(this.widget.repeat) && dart.test(this.widget.animate)) {
+            this.controller.reset();
+            this.controller.forward();
+          }
+        }
+      }).bind(this)), T.AnimationStatusLToFutureLOfNull());
+      this.controller.addStatusListener(this.listener);
+    }
+    dispose() {
+      this.controller.dispose();
+      super.dispose();
+    }
+    [_startAnimation]() {
+      return async.async(dart.void, (function* _startAnimation() {
+        if (this.widget.startDelay != null) {
+          yield async.Future.delayed(this.widget.startDelay);
+          if (dart.test(this.mounted)) this.controller.forward();
+        } else {
+          this.controller.forward();
+        }
+      }).bind(this));
+    }
+    [_stopAnimation]() {
+      return async.async(dart.void, (function* _stopAnimation() {
+        let t0, t0$;
+        t0 = this.controller;
+        t0 == null ? null : t0.reset();
+        t0$ = this.controller;
+        t0$ == null ? null : t0$.stop();
+      }).bind(this));
+    }
+    build(context) {
+      return new transitions.AnimatedBuilder.new({animation: this.alphaAnimation, child: this.widget.child, builder: dart.fn((context, widgetChild) => {
+          let decoration = new box_decoration.BoxDecoration.new({shape: this.widget.shape, color: this.widget.glowColor.withOpacity(this.alphaAnimation.value[$clamp](0.0, 1.0))});
+          return new container.Container.new({height: dart.notNull(this.widget.endRadius) * 2, width: dart.notNull(this.widget.endRadius) * 2, child: new basic.Stack.new({alignment: alignment.Alignment.center, children: T.JSArrayOfWidgetL().of([new transitions.AnimatedBuilder.new({animation: this.bigDiscAnimation, builder: dart.fn((context, widget) => {
+                    let size = this.bigDiscAnimation.value[$clamp](0.0, 1 / 0);
+                    return new container.Container.new({height: size, width: size, decoration: decoration, $creationLocationd_0dea112b090073317d4: C[5] || CT.C5});
+                  }, T.BuildContextLAndWidgetLToContainerL()), $creationLocationd_0dea112b090073317d4: C[10] || CT.C10}), dart.test(this.widget.showTwoGlows) ? new transitions.AnimatedBuilder.new({animation: this.smallDiscAnimation, builder: dart.fn((context, widget) => {
+                    let size = this.smallDiscAnimation.value[$clamp](0.0, 1 / 0);
+                    return new container.Container.new({height: size, width: size, decoration: decoration, $creationLocationd_0dea112b090073317d4: C[14] || CT.C14});
+                  }, T.BuildContextLAndWidgetLToContainerL()), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}) : C[23] || CT.C23, widgetChild]), $creationLocationd_0dea112b090073317d4: C[28] || CT.C28}), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32});
+        }, T.BuildContextLAndWidgetLToContainerL()), $creationLocationd_0dea112b090073317d4: C[37] || CT.C37});
+    }
+  };
+  (avatar_glow._AvatarGlowState.new = function() {
+    this.smallDiscAnimation = null;
+    this.bigDiscAnimation = null;
+    this.alphaAnimation = null;
+    this.controller = null;
+    this.listener = null;
+    avatar_glow._AvatarGlowState.__proto__.new.call(this);
+    ;
+  }).prototype = avatar_glow._AvatarGlowState.prototype;
+  dart.addTypeTests(avatar_glow._AvatarGlowState);
+  dart.addTypeCaches(avatar_glow._AvatarGlowState);
+  dart.setMethodSignature(avatar_glow._AvatarGlowState, () => ({
+    __proto__: dart.getMethods(avatar_glow._AvatarGlowState.__proto__),
+    didUpdateWidget: dart.fnType(dart.void, [dart.legacy(core.Object)]),
+    [_createAnimation]: dart.fnType(dart.void, []),
+    [_startAnimation]: dart.fnType(dart.void, []),
+    [_stopAnimation]: dart.fnType(dart.void, []),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(avatar_glow._AvatarGlowState, I[0]);
+  dart.setFieldSignature(avatar_glow._AvatarGlowState, () => ({
+    __proto__: dart.getFields(avatar_glow._AvatarGlowState.__proto__),
+    smallDiscAnimation: dart.fieldType(dart.legacy(animation.Animation$(dart.legacy(core.double)))),
+    bigDiscAnimation: dart.fieldType(dart.legacy(animation.Animation$(dart.legacy(core.double)))),
+    alphaAnimation: dart.fieldType(dart.legacy(animation.Animation$(dart.legacy(core.double)))),
+    controller: dart.fieldType(dart.legacy(animation_controller.AnimationController)),
+    listener: dart.fieldType(dart.legacy(dart.fnType(dart.void, [dart.legacy(animation.AnimationStatus)])))
+  }));
+  dart.trackLibraries("packages/avatar_glow/avatar_glow.dart", {
+    "package:avatar_glow/avatar_glow.dart": avatar_glow
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["avatar_glow.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/avatar_glow/avatar_glow.dart.lib.js"}');
+  // Exports:
+  return {
+    avatar_glow: avatar_glow
+  };
+}));
+
+//# sourceMappingURL=avatar_glow.dart.lib.js.map

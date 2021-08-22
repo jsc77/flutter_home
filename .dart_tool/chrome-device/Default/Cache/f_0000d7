@@ -1,0 +1,393 @@
+define(['dart_sdk', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/placeholder_span.dart'], (function load__packages__hq__speech_text__substring_highlighted_dart(dart_sdk, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__placeholder_span$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const colors$ = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const inline_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__inline_span;
+  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
+  var substring_highlighted = Object.create(dart.library);
+  var $isEmpty = dartx.isEmpty;
+  var $toLowerCase = dartx.toLowerCase;
+  var $contains = dartx.contains;
+  var $where = dartx.where;
+  var $toList = dartx.toList;
+  var $first = dartx.first;
+  var $split = dartx.split;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $substring = dartx.substring;
+  var $add = dartx.add;
+  var $forEach = dartx.forEach;
+  dart._checkModuleNullSafetyMode(false);
+  var T = {
+    intL: () => (T.intL = dart.constFn(dart.legacy(core.int)))(),
+    ColorL: () => (T.ColorL = dart.constFn(dart.legacy(ui.Color)))(),
+    _LocationL: () => (T._LocationL = dart.constFn(dart.legacy(widget_inspector._Location)))(),
+    boolL: () => (T.boolL = dart.constFn(dart.legacy(core.bool)))(),
+    StringL: () => (T.StringL = dart.constFn(dart.legacy(core.String)))(),
+    StringLToboolL: () => (T.StringLToboolL = dart.constFn(dart.fnType(T.boolL(), [T.StringL()])))(),
+    InlineSpanL: () => (T.InlineSpanL = dart.constFn(dart.legacy(inline_span.InlineSpan)))(),
+    JSArrayOfInlineSpanL: () => (T.JSArrayOfInlineSpanL = dart.constFn(_interceptors.JSArray$(T.InlineSpanL())))(),
+    StringLToNull: () => (T.StringLToNull = dart.constFn(dart.fnType(core.Null, [T.StringL()])))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  dart.defineLazy(CT, {
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_leadingDistribution]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: null,
+        [TextStyle_fontSize]: null,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: C[1] || CT.C1,
+        [TextStyle_inherit]: true
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294962158.0
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294954450.0
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293892762.0
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293227379.0
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293874512.0
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294198070.0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293212469.0
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292030255.0
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291176488.0
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290190364.0
+      });
+    },
+    get C4() {
+      return C[4] = dart.constMap(T.intL(), T.ColorL(), [50, C[5] || CT.C5, 100, C[6] || CT.C6, 200, C[7] || CT.C7, 300, C[8] || CT.C8, 400, C[9] || CT.C9, 500, C[10] || CT.C10, 600, C[11] || CT.C11, 700, C[12] || CT.C12, 800, C[13] || CT.C13, 900, C[14] || CT.C14]);
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4294198070.0,
+        [ColorSwatch__swatch]: C[4] || CT.C4
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_leadingDistribution]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: null,
+        [TextStyle_fontSize]: null,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: C[3] || CT.C3,
+        [TextStyle_inherit]: true
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 19,
+        [_Location_line]: 24,
+        [_Location_file]: null
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 25,
+        [_Location_line]: 24,
+        [_Location_file]: null
+      });
+    },
+    get C16() {
+      return C[16] = dart.constList([C[17] || CT.C17, C[18] || CT.C18], T._LocationL());
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[16] || CT.C16,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 24,
+        [_Location_file]: "file:///C:/Users/joho10/Desktop/flutter/mac_home/lib/speech_text/substring_highlighted.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 46,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 52,
+        [_Location_line]: 28,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22], T._LocationL());
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 41,
+        [_Location_line]: 28,
+        [_Location_file]: "file:///C:/Users/joho10/Desktop/flutter/mac_home/lib/speech_text/substring_highlighted.dart"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "text",
+        [_Location_column]: 23,
+        [_Location_line]: 49,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.constList([C[25] || CT.C25], T._LocationL());
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[24] || CT.C24,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 49,
+        [_Location_file]: "file:///C:/Users/joho10/Desktop/flutter/mac_home/lib/speech_text/substring_highlighted.dart"
+      });
+    }
+  }, false);
+  var C = Array(26).fill(void 0);
+  var I = ["package:hq/speech_text/substring_highlighted.dart"];
+  var text$ = dart.privateName(substring_highlighted, "SubstringHighlight.text");
+  var terms$ = dart.privateName(substring_highlighted, "SubstringHighlight.terms");
+  var textStyle$ = dart.privateName(substring_highlighted, "SubstringHighlight.textStyle");
+  var textStyleHighlight$ = dart.privateName(substring_highlighted, "SubstringHighlight.textStyleHighlight");
+  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
+  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
+  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
+  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
+  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
+  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
+  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
+  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
+  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
+  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
+  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
+  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
+  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
+  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
+  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
+  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
+  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
+  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
+  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
+  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
+  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
+  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
+  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
+  var ColorSwatch__swatch = dart.privateName(colors$, "ColorSwatch._swatch");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  substring_highlighted.SubstringHighlight = class SubstringHighlight extends framework.StatelessWidget {
+    get text() {
+      return this[text$];
+    }
+    set text(value) {
+      super.text = value;
+    }
+    get terms() {
+      return this[terms$];
+    }
+    set terms(value) {
+      super.terms = value;
+    }
+    get textStyle() {
+      return this[textStyle$];
+    }
+    set textStyle(value) {
+      super.textStyle = value;
+    }
+    get textStyleHighlight() {
+      return this[textStyleHighlight$];
+    }
+    set textStyleHighlight(value) {
+      super.textStyleHighlight = value;
+    }
+    build(context) {
+      if (dart.test(this.terms[$isEmpty])) {
+        return new text.Text.new(this.text, {style: this.textStyle, $creationLocationd_0dea112b090073317d4: C[15] || CT.C15});
+      } else {
+        let matchingTerms = this.terms[$where](dart.fn(term => this.text[$toLowerCase]()[$contains](term), T.StringLToboolL()))[$toList]();
+        if (dart.test(matchingTerms[$isEmpty])) return new text.Text.new(this.text, {style: this.textStyle, $creationLocationd_0dea112b090073317d4: C[19] || CT.C19});
+        let termMatch = matchingTerms[$first];
+        let termLC = termMatch[$toLowerCase]();
+        let children = T.JSArrayOfInlineSpanL().of([]);
+        let spanList = this.text[$toLowerCase]()[$split](termLC);
+        let i = 0;
+        spanList[$forEach](dart.fn(v => {
+          if (v[$isNotEmpty]) {
+            children[$add](new text_span.TextSpan.new({text: this.text[$substring](i, i + v.length), style: this.textStyle}));
+            i = i + v.length;
+          }
+          if (i < this.text.length) {
+            children[$add](new text_span.TextSpan.new({text: this.text[$substring](i, i + termMatch.length), style: this.textStyleHighlight}));
+            i = i + termMatch.length;
+          }
+        }, T.StringLToNull()));
+        return new basic.RichText.new({text: new text_span.TextSpan.new({children: children}), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23});
+      }
+    }
+  };
+  (substring_highlighted.SubstringHighlight.new = function(opts) {
+    let text = opts && 'text' in opts ? opts.text : null;
+    let terms = opts && 'terms' in opts ? opts.terms : null;
+    let textStyle = opts && 'textStyle' in opts ? opts.textStyle : C[0] || CT.C0;
+    let textStyleHighlight = opts && 'textStyleHighlight' in opts ? opts.textStyleHighlight : C[2] || CT.C2;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[text$] = text;
+    this[terms$] = terms;
+    this[textStyle$] = textStyle;
+    this[textStyleHighlight$] = textStyleHighlight;
+    substring_highlighted.SubstringHighlight.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = substring_highlighted.SubstringHighlight.prototype;
+  dart.addTypeTests(substring_highlighted.SubstringHighlight);
+  dart.addTypeCaches(substring_highlighted.SubstringHighlight);
+  dart.setMethodSignature(substring_highlighted.SubstringHighlight, () => ({
+    __proto__: dart.getMethods(substring_highlighted.SubstringHighlight.__proto__),
+    build: dart.fnType(dart.legacy(framework.Widget), [dart.legacy(framework.BuildContext)])
+  }));
+  dart.setLibraryUri(substring_highlighted.SubstringHighlight, I[0]);
+  dart.setFieldSignature(substring_highlighted.SubstringHighlight, () => ({
+    __proto__: dart.getFields(substring_highlighted.SubstringHighlight.__proto__),
+    text: dart.finalFieldType(dart.legacy(core.String)),
+    terms: dart.finalFieldType(dart.legacy(core.List$(dart.legacy(core.String)))),
+    textStyle: dart.finalFieldType(dart.legacy(text_style.TextStyle)),
+    textStyleHighlight: dart.finalFieldType(dart.legacy(text_style.TextStyle))
+  }));
+  dart.trackLibraries("packages/hq/speech_text/substring_highlighted.dart", {
+    "package:hq/speech_text/substring_highlighted.dart": substring_highlighted
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["substring_highlighted.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAIe;;;;;;IACM;;;;;;IACH;;;;;;IACA;;;;;;UAcU;AACxB,oBAAI,AAAM;AACR,cAAO,mBAAK,mBAAa;;AAEnB,4BACF,AAAM,AAAmD,mBAA7C,QAAC,QAAS,AAAK,AAAc,qCAAS,IAAI;AAC1D,sBAAI,AAAc,aAAD,aAAU,MAAO,mBAAK,mBAAa;AAC9C,wBAAY,AAAc,aAAD;AACzB,qBAAS,AAAU,SAAD;AAED,uBAAW;AAEf,uBAAW,AAAK,AAAc,kCAAM,MAAM;AACzD,gBAAI;AAaN,QAZF,AAAS,QAAD,WAAS,QAAC;AAChB,cAAI,AAAE,CAAD;AAE0D,YAD7D,AAAS,QAAD,OAAK,kCACH,AAAK,sBAAU,CAAC,EAAE,AAAE,CAAD,GAAG,AAAE,CAAD,iBAAiB;AACrC,YAAb,IAAA,AAAE,CAAD,GAAI,AAAE,CAAD;;AAER,cAAI,AAAE,CAAD,GAAG,AAAK;AAGoB,YAF/B,AAAS,QAAD,OAAK,kCACH,AAAK,sBAAU,CAAC,EAAE,AAAE,CAAD,GAAG,AAAU,SAAD,iBAC9B;AACU,YAArB,IAAA,AAAE,CAAD,GAAI,AAAU,SAAD;;;AAGlB,cAAO,+BAAe,sCAAmB,QAAQ;;IAErD;;;QAxCiB;QACA;QACV;QAGA;;IALU;IACA;IACV;IAGA;AANP;;EASE","file":"../../../../../../../packages/hq/speech_text/substring_highlighted.dart.lib.js"}');
+  // Exports:
+  return {
+    speech_text__substring_highlighted: substring_highlighted
+  };
+}));
+
+//# sourceMappingURL=substring_highlighted.dart.lib.js.map

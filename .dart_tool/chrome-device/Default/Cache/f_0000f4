@@ -1,0 +1,1731 @@
+define(['dart_sdk', 'packages/rxdart/src/utils/error_and_stacktrace.dart', 'packages/rxdart/src/subjects/subject.dart', 'packages/rxdart/src/streams/replay_stream.dart', 'packages/rxdart/src/utils/value_wrapper.dart', 'packages/rxdart/src/utils/forwarding_sink.dart', 'packages/rxdart/src/streams/value_stream.dart', 'packages/rxdart/src/subjects/publish_subject.dart', 'packages/rxdart/src/streams/combine_latest.dart', 'packages/rxdart/src/streams/concat.dart', 'packages/rxdart/src/streams/concat_eager.dart', 'packages/rxdart/src/streams/defer.dart', 'packages/rxdart/src/streams/fork_join.dart', 'packages/rxdart/src/streams/from_callable.dart', 'packages/rxdart/src/streams/merge.dart', 'packages/rxdart/src/streams/never.dart', 'packages/rxdart/src/streams/race.dart', 'packages/rxdart/src/streams/range.dart', 'packages/rxdart/src/streams/repeat.dart', 'packages/rxdart/src/streams/retry.dart', 'packages/rxdart/src/streams/retry_when.dart', 'packages/rxdart/src/streams/sequence_equal.dart', 'packages/rxdart/src/streams/switch_latest.dart', 'packages/rxdart/src/streams/timer.dart', 'packages/rxdart/src/streams/using.dart', 'packages/rxdart/src/streams/zip.dart'], (function load__packages__rxdart__src__subjects__replay_subject_dart(dart_sdk, packages__rxdart__src__utils__error_and_stacktrace$46dart, packages__rxdart__src__subjects__subject$46dart, packages__rxdart__src__streams__replay_stream$46dart, packages__rxdart__src__utils__value_wrapper$46dart, packages__rxdart__src__utils__forwarding_sink$46dart, packages__rxdart__src__streams__value_stream$46dart, packages__rxdart__src__subjects__publish_subject$46dart, packages__rxdart__src__streams__combine_latest$46dart, packages__rxdart__src__streams__concat$46dart, packages__rxdart__src__streams__concat_eager$46dart, packages__rxdart__src__streams__defer$46dart, packages__rxdart__src__streams__fork_join$46dart, packages__rxdart__src__streams__from_callable$46dart, packages__rxdart__src__streams__merge$46dart, packages__rxdart__src__streams__never$46dart, packages__rxdart__src__streams__race$46dart, packages__rxdart__src__streams__range$46dart, packages__rxdart__src__streams__repeat$46dart, packages__rxdart__src__streams__retry$46dart, packages__rxdart__src__streams__retry_when$46dart, packages__rxdart__src__streams__sequence_equal$46dart, packages__rxdart__src__streams__switch_latest$46dart, packages__rxdart__src__streams__timer$46dart, packages__rxdart__src__streams__using$46dart, packages__rxdart__src__streams__zip$46dart) {
+  'use strict';
+  const core = dart_sdk.core;
+  const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
+  const _internal = dart_sdk._internal;
+  const _interceptors = dart_sdk._interceptors;
+  const dart = dart_sdk.dart;
+  const dartx = dart_sdk.dartx;
+  const error_and_stacktrace = packages__rxdart__src__utils__error_and_stacktrace$46dart.src__utils__error_and_stacktrace;
+  const subject = packages__rxdart__src__subjects__subject$46dart.src__subjects__subject;
+  const replay_stream = packages__rxdart__src__streams__replay_stream$46dart.src__streams__replay_stream;
+  const value_wrapper = packages__rxdart__src__utils__value_wrapper$46dart.src__utils__value_wrapper;
+  const forwarding_sink = packages__rxdart__src__utils__forwarding_sink$46dart.src__utils__forwarding_sink;
+  const value_stream = packages__rxdart__src__streams__value_stream$46dart.src__streams__value_stream;
+  const publish_subject = packages__rxdart__src__subjects__publish_subject$46dart.src__subjects__publish_subject;
+  const combine_latest = packages__rxdart__src__streams__combine_latest$46dart.src__streams__combine_latest;
+  const concat = packages__rxdart__src__streams__concat$46dart.src__streams__concat;
+  const concat_eager = packages__rxdart__src__streams__concat_eager$46dart.src__streams__concat_eager;
+  const defer = packages__rxdart__src__streams__defer$46dart.src__streams__defer;
+  const fork_join = packages__rxdart__src__streams__fork_join$46dart.src__streams__fork_join;
+  const from_callable = packages__rxdart__src__streams__from_callable$46dart.src__streams__from_callable;
+  const merge = packages__rxdart__src__streams__merge$46dart.src__streams__merge;
+  const never = packages__rxdart__src__streams__never$46dart.src__streams__never;
+  const race = packages__rxdart__src__streams__race$46dart.src__streams__race;
+  const range = packages__rxdart__src__streams__range$46dart.src__streams__range;
+  const repeat = packages__rxdart__src__streams__repeat$46dart.src__streams__repeat;
+  const retry = packages__rxdart__src__streams__retry$46dart.src__streams__retry;
+  const retry_when = packages__rxdart__src__streams__retry_when$46dart.src__streams__retry_when;
+  const sequence_equal = packages__rxdart__src__streams__sequence_equal$46dart.src__streams__sequence_equal;
+  const switch_latest = packages__rxdart__src__streams__switch_latest$46dart.src__streams__switch_latest;
+  const timer = packages__rxdart__src__streams__timer$46dart.src__streams__timer;
+  const using = packages__rxdart__src__streams__using$46dart.src__streams__using;
+  const zip = packages__rxdart__src__streams__zip$46dart.src__streams__zip;
+  var replay_subject = Object.create(dart.library);
+  var start_with_error = Object.create(dart.library);
+  var forwarding_stream = Object.create(dart.library);
+  var start_with = Object.create(dart.library);
+  var behavior_subject = Object.create(dart.library);
+  var subjects = Object.create(dart.library);
+  var connectable_stream = Object.create(dart.library);
+  var streams = Object.create(dart.library);
+  var rx = Object.create(dart.library);
+  var $reversed = dartx.reversed;
+  var $toList = dartx.toList;
+  var $fold = dartx.fold;
+  var $length = dartx.length;
+  var $where = dartx.where;
+  var $map = dartx.map;
+  var $add = dartx.add;
+  dart._checkModuleNullSafetyMode(false);
+  var T$ = {
+    StackTraceN: () => (T$.StackTraceN = dart.constFn(dart.nullable(core.StackTrace)))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    FnTovoid: () => (T$.FnTovoid = dart.constFn(dart.fnType(dart.void, [T$.VoidTovoid()])))(),
+    ObjectAndStackTraceTovoid: () => (T$.ObjectAndStackTraceTovoid = dart.constFn(dart.fnType(dart.void, [core.Object, core.StackTrace])))(),
+    VoidToNull: () => (T$.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    JSArrayOfFuture: () => (T$.JSArrayOfFuture = dart.constFn(_interceptors.JSArray$(async.Future)))(),
+    FutureOfList: () => (T$.FutureOfList = dart.constFn(async.Future$(core.List)))(),
+    VoidToFutureOfList: () => (T$.VoidToFutureOfList = dart.constFn(dart.fnType(T$.FutureOfList(), [])))(),
+    FutureOfvoid: () => (T$.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    VoidToFutureOfvoid: () => (T$.VoidToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [])))(),
+    FutureN: () => (T$.FutureN = dart.constFn(dart.nullable(async.Future)))(),
+    VoidToFutureN: () => (T$.VoidToFutureN = dart.constFn(dart.fnType(T$.FutureN(), [])))(),
+    FutureNOfvoid: () => (T$.FutureNOfvoid = dart.constFn(dart.nullable(T$.FutureOfvoid())))(),
+    VoidToFutureNOfvoid: () => (T$.VoidToFutureNOfvoid = dart.constFn(dart.fnType(T$.FutureNOfvoid(), [])))(),
+    voidToFuture: () => (T$.voidToFuture = dart.constFn(dart.fnType(async.Future, [dart.void])))(),
+    intN: () => (T$.intN = dart.constFn(dart.nullable(core.int)))()
+  };
+  const CT = Object.create({
+    _: () => (C, CT)
+  });
+  var I$ = [
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/subjects/replay_subject.dart",
+    "package:rxdart/src/subjects/replay_subject.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/transformers/start_with_error.dart",
+    "package:rxdart/src/transformers/start_with_error.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/utils/forwarding_stream.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/transformers/start_with.dart",
+    "package:rxdart/src/transformers/start_with.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/subjects/behavior_subject.dart",
+    "package:rxdart/src/subjects/behavior_subject.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/streams/connectable_stream.dart",
+    "package:rxdart/src/streams/connectable_stream.dart",
+    "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/rxdart-0.27.1/lib/src/rx.dart",
+    "package:rxdart/src/rx.dart"
+  ];
+  var _queue$ = dart.privateName(replay_subject, "_queue");
+  var _maxSize$ = dart.privateName(replay_subject, "_maxSize");
+  const _is_ReplaySubject_default = Symbol('_is_ReplaySubject_default');
+  replay_subject.ReplaySubject$ = dart.generic(T => {
+    var _EventOfT = () => (_EventOfT = dart.constFn(replay_subject._Event$(T)))();
+    var _EventOfTTobool = () => (_EventOfTTobool = dart.constFn(dart.fnType(core.bool, [_EventOfT()])))();
+    var _EventOfTToT = () => (_EventOfTToT = dart.constFn(dart.fnType(T, [_EventOfT()])))();
+    var _EventOfTToObject = () => (_EventOfTToObject = dart.constFn(dart.fnType(core.Object, [_EventOfT()])))();
+    var _EventOfTToStackTraceN = () => (_EventOfTToStackTraceN = dart.constFn(dart.fnType(T$.StackTraceN(), [_EventOfT()])))();
+    class ReplaySubject extends subject.Subject$(T) {
+      static new(opts) {
+        let maxSize = opts && 'maxSize' in opts ? opts.maxSize : null;
+        let onListen = opts && 'onListen' in opts ? opts.onListen : null;
+        let onCancel = opts && 'onCancel' in opts ? opts.onCancel : null;
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[0], 62, 10, "sync");
+        let controller = async.StreamController$(T).broadcast({onListen: onListen, onCancel: onCancel, sync: sync});
+        let queue = new (collection.ListQueue$(replay_subject._Event$(T))).new();
+        return new (replay_subject.ReplaySubject$(T)).__(controller, rx.Rx.defer(T, dart.fn(() => queue[$toList]({growable: false})[$reversed][$fold](async.Stream$(T), controller.stream, dart.fn((stream, event) => {
+          if (stream == null) dart.nullFailed(I$[0], 77, 14, "stream");
+          if (event == null) dart.nullFailed(I$[0], 77, 22, "event");
+          if (dart.test(event.isError)) {
+            let errorAndStackTrace = dart.nullCheck(event.errorAndStackTrace);
+            return stream.transform(T, new (start_with_error.StartWithErrorStreamTransformer$(T)).new(errorAndStackTrace.error, errorAndStackTrace.stackTrace));
+          } else {
+            return stream.transform(T, new (start_with.StartWithStreamTransformer$(T)).new(dart.nullCheck(event.data).value));
+          }
+        }, dart.fnType(async.Stream$(T), [async.Stream$(T), replay_subject._Event$(T)]))), dart.fnType(async.Stream$(T), [])), {reusable: true}), queue, maxSize);
+      }
+      onAdd(event) {
+        T.as(event);
+        if (this[_queue$][$length] == this[_maxSize$]) {
+          this[_queue$].removeFirst();
+        }
+        this[_queue$].add(_EventOfT().data(event));
+      }
+      onAddError(error, stackTrace = null) {
+        if (error == null) dart.nullFailed(I$[0], 116, 26, "error");
+        if (this[_queue$][$length] == this[_maxSize$]) {
+          this[_queue$].removeFirst();
+        }
+        this[_queue$].add(_EventOfT().error(new error_and_stacktrace.ErrorAndStackTrace.new(error, stackTrace)));
+      }
+      get values() {
+        return this[_queue$][$where](dart.fn(event => {
+          if (event == null) dart.nullFailed(I$[0], 126, 15, "event");
+          return !dart.test(event.isError);
+        }, _EventOfTTobool()))[$map](T, dart.fn(event => {
+          if (event == null) dart.nullFailed(I$[0], 127, 13, "event");
+          return dart.nullCheck(event.data).value;
+        }, _EventOfTToT()))[$toList]({growable: false});
+      }
+      get errors() {
+        return this[_queue$][$where](dart.fn(event => {
+          if (event == null) dart.nullFailed(I$[0], 132, 15, "event");
+          return event.isError;
+        }, _EventOfTTobool()))[$map](core.Object, dart.fn(event => {
+          if (event == null) dart.nullFailed(I$[0], 133, 13, "event");
+          return dart.nullCheck(event.errorAndStackTrace).error;
+        }, _EventOfTToObject()))[$toList]({growable: false});
+      }
+      get stackTraces() {
+        return this[_queue$][$where](dart.fn(event => {
+          if (event == null) dart.nullFailed(I$[0], 138, 15, "event");
+          return event.isError;
+        }, _EventOfTTobool()))[$map](T$.StackTraceN(), dart.fn(event => {
+          if (event == null) dart.nullFailed(I$[0], 139, 13, "event");
+          return dart.nullCheck(event.errorAndStackTrace).stackTrace;
+        }, _EventOfTToStackTraceN()))[$toList]({growable: false});
+      }
+      createForwardingSubject(R, opts) {
+        let onListen = opts && 'onListen' in opts ? opts.onListen : null;
+        let onCancel = opts && 'onCancel' in opts ? opts.onCancel : null;
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[0], 146, 10, "sync");
+        return replay_subject.ReplaySubject$(R).new({maxSize: this[_maxSize$], onCancel: onCancel, onListen: onListen, sync: sync});
+      }
+    }
+    (ReplaySubject.__ = function(controller, stream, _queue, _maxSize) {
+      if (controller == null) dart.nullFailed(I$[0], 100, 25, "controller");
+      if (stream == null) dart.nullFailed(I$[0], 101, 15, "stream");
+      if (_queue == null) dart.nullFailed(I$[0], 102, 10, "_queue");
+      this[_queue$] = _queue;
+      this[_maxSize$] = _maxSize;
+      ReplaySubject.__proto__.new.call(this, controller, stream);
+      ;
+    }).prototype = ReplaySubject.prototype;
+    dart.addTypeTests(ReplaySubject);
+    ReplaySubject.prototype[_is_ReplaySubject_default] = true;
+    dart.addTypeCaches(ReplaySubject);
+    ReplaySubject[dart.implements] = () => [replay_stream.ReplayStream$(T)];
+    dart.setMethodSignature(ReplaySubject, () => ({
+      __proto__: dart.getMethods(ReplaySubject.__proto__),
+      createForwardingSubject: dart.gFnType(R => [replay_subject.ReplaySubject$(R), [], {onCancel: dart.nullable(dart.fnType(dart.void, [])), onListen: dart.nullable(dart.fnType(dart.void, [])), sync: core.bool}, {}], R => [dart.nullable(core.Object)])
+    }));
+    dart.setGetterSignature(ReplaySubject, () => ({
+      __proto__: dart.getGetters(ReplaySubject.__proto__),
+      values: core.List$(T),
+      errors: core.List$(core.Object),
+      stackTraces: core.List$(dart.nullable(core.StackTrace))
+    }));
+    dart.setLibraryUri(ReplaySubject, I$[1]);
+    dart.setFieldSignature(ReplaySubject, () => ({
+      __proto__: dart.getFields(ReplaySubject.__proto__),
+      [_queue$]: dart.finalFieldType(collection.Queue$(replay_subject._Event$(T))),
+      [_maxSize$]: dart.finalFieldType(dart.nullable(core.int))
+    }));
+    return ReplaySubject;
+  });
+  replay_subject.ReplaySubject = replay_subject.ReplaySubject$();
+  dart.addTypeTests(replay_subject.ReplaySubject, _is_ReplaySubject_default);
+  const _is__Event_default = Symbol('_is__Event_default');
+  replay_subject._Event$ = dart.generic(T => {
+    class _Event extends core.Object {
+      static data(data) {
+        return new (replay_subject._Event$(T)).__({isError: false, data: new (value_wrapper.ValueWrapper$(T)).new(data)});
+      }
+      static error(e) {
+        if (e == null) dart.nullFailed(I$[0], 166, 43, "e");
+        return new (replay_subject._Event$(T)).__({isError: true, errorAndStackTrace: e});
+      }
+    }
+    (_Event.__ = function(opts) {
+      let isError = opts && 'isError' in opts ? opts.isError : null;
+      if (isError == null) dart.nullFailed(I$[0], 161, 27, "isError");
+      let data = opts && 'data' in opts ? opts.data : null;
+      let errorAndStackTrace = opts && 'errorAndStackTrace' in opts ? opts.errorAndStackTrace : null;
+      this.isError = isError;
+      this.data = data;
+      this.errorAndStackTrace = errorAndStackTrace;
+      ;
+    }).prototype = _Event.prototype;
+    dart.addTypeTests(_Event);
+    _Event.prototype[_is__Event_default] = true;
+    dart.addTypeCaches(_Event);
+    dart.setLibraryUri(_Event, I$[1]);
+    dart.setFieldSignature(_Event, () => ({
+      __proto__: dart.getFields(_Event.__proto__),
+      isError: dart.finalFieldType(core.bool),
+      data: dart.finalFieldType(dart.nullable(value_wrapper.ValueWrapper$(T))),
+      errorAndStackTrace: dart.finalFieldType(dart.nullable(error_and_stacktrace.ErrorAndStackTrace))
+    }));
+    return _Event;
+  });
+  replay_subject._Event = replay_subject._Event$();
+  dart.addTypeTests(replay_subject._Event, _is__Event_default);
+  var _isFirstEventAdded = dart.privateName(start_with_error, "_isFirstEventAdded");
+  var _e$ = dart.privateName(start_with_error, "_e");
+  var _st$ = dart.privateName(start_with_error, "_st");
+  var _safeAddFirstEvent = dart.privateName(start_with_error, "_safeAddFirstEvent");
+  const _is__StartWithErrorStreamSink_default = Symbol('_is__StartWithErrorStreamSink_default');
+  start_with_error._StartWithErrorStreamSink$ = dart.generic(S => {
+    var EventSinkOfS = () => (EventSinkOfS = dart.constFn(async.EventSink$(S)))();
+    class _StartWithErrorStreamSink extends core.Object {
+      add(sink, data) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[2], 14, 25, "sink");
+        S.as(data);
+        this[_safeAddFirstEvent](sink);
+        sink.add(data);
+      }
+      addError(sink, e, st) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[2], 20, 30, "sink");
+        if (e == null) dart.nullFailed(I$[2], 20, 43, "e");
+        if (st == null) dart.nullFailed(I$[2], 20, 57, "st");
+        this[_safeAddFirstEvent](sink);
+        sink.addError(e, st);
+      }
+      close(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[2], 26, 27, "sink");
+        this[_safeAddFirstEvent](sink);
+        sink.close();
+      }
+      onCancel(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[2], 32, 34, "sink");
+      }
+      onListen(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[2], 35, 30, "sink");
+        async.scheduleMicrotask(dart.fn(() => this[_safeAddFirstEvent](sink), T$.VoidTovoid()));
+      }
+      onPause(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[2], 40, 29, "sink");
+      }
+      onResume(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[2], 43, 30, "sink");
+      }
+      [_safeAddFirstEvent](sink) {
+        if (sink == null) dart.nullFailed(I$[2], 52, 40, "sink");
+        if (dart.test(this[_isFirstEventAdded])) return;
+        sink.addError(this[_e$], this[_st$]);
+        this[_isFirstEventAdded] = true;
+      }
+    }
+    (_StartWithErrorStreamSink.new = function(_e, _st) {
+      if (_e == null) dart.nullFailed(I$[2], 11, 34, "_e");
+      this[_isFirstEventAdded] = false;
+      this[_e$] = _e;
+      this[_st$] = _st;
+      ;
+    }).prototype = _StartWithErrorStreamSink.prototype;
+    dart.addTypeTests(_StartWithErrorStreamSink);
+    _StartWithErrorStreamSink.prototype[_is__StartWithErrorStreamSink_default] = true;
+    dart.addTypeCaches(_StartWithErrorStreamSink);
+    _StartWithErrorStreamSink[dart.implements] = () => [forwarding_sink.ForwardingSink$(S, S)];
+    dart.setMethodSignature(_StartWithErrorStreamSink, () => ({
+      __proto__: dart.getMethods(_StartWithErrorStreamSink.__proto__),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      addError: dart.fnType(dart.void, [dart.nullable(core.Object), core.Object, core.StackTrace]),
+      close: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onCancel: dart.fnType(dart.dynamic, [dart.nullable(core.Object)]),
+      onListen: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onPause: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onResume: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      [_safeAddFirstEvent]: dart.fnType(dart.void, [async.EventSink$(S)])
+    }));
+    dart.setLibraryUri(_StartWithErrorStreamSink, I$[3]);
+    dart.setFieldSignature(_StartWithErrorStreamSink, () => ({
+      __proto__: dart.getFields(_StartWithErrorStreamSink.__proto__),
+      [_e$]: dart.finalFieldType(core.Object),
+      [_st$]: dart.finalFieldType(dart.nullable(core.StackTrace)),
+      [_isFirstEventAdded]: dart.fieldType(core.bool)
+    }));
+    return _StartWithErrorStreamSink;
+  });
+  start_with_error._StartWithErrorStreamSink = start_with_error._StartWithErrorStreamSink$();
+  dart.addTypeTests(start_with_error._StartWithErrorStreamSink, _is__StartWithErrorStreamSink_default);
+  var error$ = dart.privateName(start_with_error, "StartWithErrorStreamTransformer.error");
+  var stackTrace$ = dart.privateName(start_with_error, "StartWithErrorStreamTransformer.stackTrace");
+  const _is_StartWithErrorStreamTransformer_default = Symbol('_is_StartWithErrorStreamTransformer_default');
+  start_with_error.StartWithErrorStreamTransformer$ = dart.generic(S => {
+    var StreamOfS = () => (StreamOfS = dart.constFn(async.Stream$(S)))();
+    var _StartWithErrorStreamSinkOfS = () => (_StartWithErrorStreamSinkOfS = dart.constFn(start_with_error._StartWithErrorStreamSink$(S)))();
+    class StartWithErrorStreamTransformer extends async.StreamTransformerBase$(S, S) {
+      get error() {
+        return this[error$];
+      }
+      set error(value) {
+        super.error = value;
+      }
+      get stackTrace() {
+        return this[stackTrace$];
+      }
+      set stackTrace(value) {
+        super.stackTrace = value;
+      }
+      bind(stream) {
+        StreamOfS().as(stream);
+        if (stream == null) dart.nullFailed(I$[2], 78, 28, "stream");
+        return forwarding_stream.forwardStream(S, S, stream, new (_StartWithErrorStreamSinkOfS()).new(this.error, this.stackTrace));
+      }
+    }
+    (StartWithErrorStreamTransformer.new = function(error, stackTrace = null) {
+      if (error == null) dart.nullFailed(I$[2], 75, 40, "error");
+      this[error$] = error;
+      this[stackTrace$] = stackTrace;
+      StartWithErrorStreamTransformer.__proto__.new.call(this);
+      ;
+    }).prototype = StartWithErrorStreamTransformer.prototype;
+    dart.addTypeTests(StartWithErrorStreamTransformer);
+    StartWithErrorStreamTransformer.prototype[_is_StartWithErrorStreamTransformer_default] = true;
+    dart.addTypeCaches(StartWithErrorStreamTransformer);
+    dart.setMethodSignature(StartWithErrorStreamTransformer, () => ({
+      __proto__: dart.getMethods(StartWithErrorStreamTransformer.__proto__),
+      bind: dart.fnType(async.Stream$(S), [dart.nullable(core.Object)])
+    }));
+    dart.setLibraryUri(StartWithErrorStreamTransformer, I$[3]);
+    dart.setFieldSignature(StartWithErrorStreamTransformer, () => ({
+      __proto__: dart.getFields(StartWithErrorStreamTransformer.__proto__),
+      error: dart.finalFieldType(core.Object),
+      stackTrace: dart.finalFieldType(dart.nullable(core.StackTrace))
+    }));
+    return StartWithErrorStreamTransformer;
+  });
+  start_with_error.StartWithErrorStreamTransformer = start_with_error.StartWithErrorStreamTransformer$();
+  dart.addTypeTests(start_with_error.StartWithErrorStreamTransformer, _is_StartWithErrorStreamTransformer_default);
+  forwarding_stream.forwardStream = function forwardStream(T, R, stream, connectedSink) {
+    if (stream == null) dart.nullFailed(I$[4], 12, 15, "stream");
+    if (connectedSink == null) dart.nullFailed(I$[4], 12, 44, "connectedSink");
+    core.ArgumentError.checkNotNull(async.Stream$(T), stream, "stream");
+    core.ArgumentError.checkNotNull(forwarding_sink.ForwardingSink$(T, R), connectedSink, "connectedSink");
+    let controller = null;
+    let controller$35isSet = false;
+    function controller$35get() {
+      return controller$35isSet ? controller : dart.throw(new _internal.LateError.localNI("controller"));
+    }
+    dart.fn(controller$35get, dart.fnType(async.StreamController$(R), []));
+    function controller$35set(t3) {
+      if (t3 == null) dart.nullFailed(I$[4], 16, 28, "null");
+      controller$35isSet = true;
+      return controller = t3;
+    }
+    dart.fn(controller$35set, dart.fnType(dart.dynamic, [async.StreamController$(R)]));
+    let subscription = null;
+    let subscription$35isSet = false;
+    function subscription$35get() {
+      return subscription$35isSet ? subscription : dart.throw(new _internal.LateError.localNI("subscription"));
+    }
+    dart.fn(subscription$35get, dart.fnType(async.StreamSubscription$(T), []));
+    function subscription$35set(t8) {
+      if (t8 == null) dart.nullFailed(I$[4], 17, 30, "null");
+      subscription$35isSet = true;
+      return subscription = t8;
+    }
+    dart.fn(subscription$35set, dart.fnType(dart.dynamic, [async.StreamSubscription$(T)]));
+    function runCatching(block) {
+      if (block == null) dart.nullFailed(I$[4], 21, 36, "block");
+      try {
+        block();
+      } catch (e$) {
+        let e = dart.getThrown(e$);
+        let s = dart.stackTrace(e$);
+        if (core.Object.is(e)) {
+          connectedSink.addError(controller$35get(), e, s);
+        } else
+          throw e$;
+      }
+    }
+    dart.fn(runCatching, T$.FnTovoid());
+    let onListen = dart.fn(() => {
+      runCatching(dart.fn(() => connectedSink.onListen(controller$35get()), T$.VoidTovoid()));
+      subscription$35set(stream.listen(dart.fn(data => runCatching(dart.fn(() => connectedSink.add(controller$35get(), data), T$.VoidTovoid())), dart.fnType(dart.void, [T])), {onError: dart.fn((e, st) => {
+          if (e == null) dart.nullFailed(I$[4], 34, 24, "e");
+          if (st == null) dart.nullFailed(I$[4], 34, 38, "st");
+          return runCatching(dart.fn(() => connectedSink.addError(controller$35get(), e, st), T$.VoidTovoid()));
+        }, T$.ObjectAndStackTraceTovoid()), onDone: dart.fn(() => runCatching(dart.fn(() => connectedSink.close(controller$35get()), T$.VoidTovoid())), T$.VoidTovoid())}));
+    }, T$.VoidToNull());
+    let onCancel = dart.fn(() => {
+      let onCancelSelfFuture = subscription$35get().cancel();
+      let onCancelConnectedFuture = connectedSink.onCancel(controller$35get());
+      let futures = (() => {
+        let t11 = T$.JSArrayOfFuture().of([]);
+        if (async.Future.is(onCancelSelfFuture)) t11[$add](onCancelSelfFuture);
+        if (async.Future.is(onCancelConnectedFuture)) t11[$add](onCancelConnectedFuture);
+        return t11;
+      })();
+      return async.Future.wait(dart.dynamic, futures);
+    }, T$.VoidToFutureOfList());
+    let onPause = dart.fn(() => {
+      subscription$35get().pause();
+      runCatching(dart.fn(() => connectedSink.onPause(controller$35get()), T$.VoidTovoid()));
+    }, T$.VoidToNull());
+    let onResume = dart.fn(() => {
+      subscription$35get().resume();
+      runCatching(dart.fn(() => connectedSink.onResume(controller$35get()), T$.VoidTovoid()));
+    }, T$.VoidToNull());
+    if (subject.Subject$(T).is(stream)) {
+      controller$35set(stream.createForwardingSubject(R, {onListen: onListen, onCancel: onCancel, sync: true}));
+    } else if (dart.test(stream.isBroadcast)) {
+      controller$35set(async.StreamController$(R).broadcast({onListen: onListen, onCancel: onCancel, sync: true}));
+    } else {
+      controller$35set(async.StreamController$(R).new({onListen: onListen, onPause: onPause, onResume: onResume, onCancel: onCancel, sync: true}));
+    }
+    return controller$35get().stream;
+  };
+  var _isFirstEventAdded$ = dart.privateName(start_with, "_isFirstEventAdded");
+  var _startValue$ = dart.privateName(start_with, "_startValue");
+  var _safeAddFirstEvent$ = dart.privateName(start_with, "_safeAddFirstEvent");
+  const _is__StartWithStreamSink_default = Symbol('_is__StartWithStreamSink_default');
+  start_with._StartWithStreamSink$ = dart.generic(S => {
+    var EventSinkOfS = () => (EventSinkOfS = dart.constFn(async.EventSink$(S)))();
+    class _StartWithStreamSink extends core.Object {
+      add(sink, data) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[5], 13, 25, "sink");
+        S.as(data);
+        this[_safeAddFirstEvent$](sink);
+        sink.add(data);
+      }
+      addError(sink, e, st) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[5], 19, 30, "sink");
+        if (e == null) dart.nullFailed(I$[5], 19, 43, "e");
+        if (st == null) dart.nullFailed(I$[5], 19, 57, "st");
+        this[_safeAddFirstEvent$](sink);
+        sink.addError(e, st);
+      }
+      close(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[5], 25, 27, "sink");
+        this[_safeAddFirstEvent$](sink);
+        sink.close();
+      }
+      onCancel(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[5], 31, 34, "sink");
+      }
+      onListen(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[5], 34, 30, "sink");
+        async.scheduleMicrotask(dart.fn(() => this[_safeAddFirstEvent$](sink), T$.VoidTovoid()));
+      }
+      onPause(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[5], 39, 29, "sink");
+      }
+      onResume(sink) {
+        EventSinkOfS().as(sink);
+        if (sink == null) dart.nullFailed(I$[5], 42, 30, "sink");
+      }
+      [_safeAddFirstEvent$](sink) {
+        if (sink == null) dart.nullFailed(I$[5], 51, 40, "sink");
+        if (!dart.test(this[_isFirstEventAdded$])) {
+          sink.add(this[_startValue$]);
+          this[_isFirstEventAdded$] = true;
+        }
+      }
+    }
+    (_StartWithStreamSink.new = function(_startValue) {
+      this[_isFirstEventAdded$] = false;
+      this[_startValue$] = _startValue;
+      ;
+    }).prototype = _StartWithStreamSink.prototype;
+    dart.addTypeTests(_StartWithStreamSink);
+    _StartWithStreamSink.prototype[_is__StartWithStreamSink_default] = true;
+    dart.addTypeCaches(_StartWithStreamSink);
+    _StartWithStreamSink[dart.implements] = () => [forwarding_sink.ForwardingSink$(S, S)];
+    dart.setMethodSignature(_StartWithStreamSink, () => ({
+      __proto__: dart.getMethods(_StartWithStreamSink.__proto__),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object), dart.nullable(core.Object)]),
+      addError: dart.fnType(dart.void, [dart.nullable(core.Object), core.Object, core.StackTrace]),
+      close: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onCancel: dart.fnType(dart.dynamic, [dart.nullable(core.Object)]),
+      onListen: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onPause: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      onResume: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      [_safeAddFirstEvent$]: dart.fnType(dart.void, [async.EventSink$(S)])
+    }));
+    dart.setLibraryUri(_StartWithStreamSink, I$[6]);
+    dart.setFieldSignature(_StartWithStreamSink, () => ({
+      __proto__: dart.getFields(_StartWithStreamSink.__proto__),
+      [_startValue$]: dart.finalFieldType(S),
+      [_isFirstEventAdded$]: dart.fieldType(core.bool)
+    }));
+    return _StartWithStreamSink;
+  });
+  start_with._StartWithStreamSink = start_with._StartWithStreamSink$();
+  dart.addTypeTests(start_with._StartWithStreamSink, _is__StartWithStreamSink_default);
+  var startValue$ = dart.privateName(start_with, "StartWithStreamTransformer.startValue");
+  const _is_StartWithStreamTransformer_default = Symbol('_is_StartWithStreamTransformer_default');
+  start_with.StartWithStreamTransformer$ = dart.generic(S => {
+    var StreamOfS = () => (StreamOfS = dart.constFn(async.Stream$(S)))();
+    var _StartWithStreamSinkOfS = () => (_StartWithStreamSinkOfS = dart.constFn(start_with._StartWithStreamSink$(S)))();
+    class StartWithStreamTransformer extends async.StreamTransformerBase$(S, S) {
+      get startValue() {
+        return this[startValue$];
+      }
+      set startValue(value) {
+        super.startValue = value;
+      }
+      bind(stream) {
+        StreamOfS().as(stream);
+        if (stream == null) dart.nullFailed(I$[5], 75, 28, "stream");
+        return forwarding_stream.forwardStream(S, S, stream, new (_StartWithStreamSinkOfS()).new(this.startValue));
+      }
+    }
+    (StartWithStreamTransformer.new = function(startValue) {
+      this[startValue$] = startValue;
+      StartWithStreamTransformer.__proto__.new.call(this);
+      ;
+    }).prototype = StartWithStreamTransformer.prototype;
+    dart.addTypeTests(StartWithStreamTransformer);
+    StartWithStreamTransformer.prototype[_is_StartWithStreamTransformer_default] = true;
+    dart.addTypeCaches(StartWithStreamTransformer);
+    dart.setMethodSignature(StartWithStreamTransformer, () => ({
+      __proto__: dart.getMethods(StartWithStreamTransformer.__proto__),
+      bind: dart.fnType(async.Stream$(S), [dart.nullable(core.Object)])
+    }));
+    dart.setLibraryUri(StartWithStreamTransformer, I$[6]);
+    dart.setFieldSignature(StartWithStreamTransformer, () => ({
+      __proto__: dart.getFields(StartWithStreamTransformer.__proto__),
+      startValue: dart.finalFieldType(S)
+    }));
+    return StartWithStreamTransformer;
+  });
+  start_with.StartWithStreamTransformer = start_with.StartWithStreamTransformer$();
+  dart.addTypeTests(start_with.StartWithStreamTransformer, _is_StartWithStreamTransformer_default);
+  start_with['StartWithExtension|startWith'] = function StartWithExtension$124startWith(T, $this, startValue) {
+    if ($this == null) dart.nullFailed(I$[5], 87, 13, "#this");
+    return $this.transform(T, new (start_with.StartWithStreamTransformer$(T)).new(startValue));
+  };
+  start_with['StartWithExtension|get#startWith'] = function StartWithExtension$124get$35startWith(T, $this) {
+    if ($this == null) dart.nullFailed(I$[5], 87, 13, "#this");
+    return dart.fn(startValue => start_with['StartWithExtension|startWith'](T, $this, startValue), dart.fnType(async.Stream$(T), [T]));
+  };
+  var _stream$ = dart.privateName(behavior_subject, "_stream");
+  var _wrapper$ = dart.privateName(behavior_subject, "_wrapper");
+  var _forwardBehaviorSubject = dart.privateName(behavior_subject, "_forwardBehaviorSubject");
+  const _is_BehaviorSubject_default = Symbol('_is_BehaviorSubject_default');
+  behavior_subject.BehaviorSubject$ = dart.generic(T => {
+    var StreamOfT = () => (StreamOfT = dart.constFn(async.Stream$(T)))();
+    var StreamOfTToStreamOfT = () => (StreamOfTToStreamOfT = dart.constFn(dart.fnType(StreamOfT(), [StreamOfT()])))();
+    class BehaviorSubject extends subject.Subject$(T) {
+      static new(opts) {
+        let onListen = opts && 'onListen' in opts ? opts.onListen : null;
+        let onCancel = opts && 'onCancel' in opts ? opts.onCancel : null;
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[7], 61, 10, "sync");
+        let controller = async.StreamController$(T).broadcast({onListen: onListen, onCancel: onCancel, sync: sync});
+        let wrapper = new (behavior_subject._Wrapper$(T)).new();
+        return new (behavior_subject.BehaviorSubject$(T)).__(controller, rx.Rx.defer(T, behavior_subject.BehaviorSubject._deferStream(T, wrapper, controller, sync), {reusable: true}), wrapper);
+      }
+      static seeded(seedValue, opts) {
+        let onListen = opts && 'onListen' in opts ? opts.onListen : null;
+        let onCancel = opts && 'onCancel' in opts ? opts.onCancel : null;
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[7], 88, 10, "sync");
+        let controller = async.StreamController$(T).broadcast({onListen: onListen, onCancel: onCancel, sync: sync});
+        let wrapper = new (behavior_subject._Wrapper$(T)).seeded(seedValue);
+        return new (behavior_subject.BehaviorSubject$(T)).__(controller, rx.Rx.defer(T, behavior_subject.BehaviorSubject._deferStream(T, wrapper, controller, sync), {reusable: true}), wrapper);
+      }
+      static _deferStream(T, wrapper, controller, sync) {
+        if (wrapper == null) dart.nullFailed(I$[7], 107, 23, "wrapper");
+        if (controller == null) dart.nullFailed(I$[7], 107, 52, "controller");
+        if (sync == null) dart.nullFailed(I$[7], 107, 69, "sync");
+        return dart.fn(() => {
+          let errorAndStackTrace = wrapper.errorAndStackTrace;
+          if (errorAndStackTrace != null && !dart.test(wrapper.isValue)) {
+            return controller.stream.transform(T, new (start_with_error.StartWithErrorStreamTransformer$(T)).new(errorAndStackTrace.error, errorAndStackTrace.stackTrace));
+          }
+          let value = wrapper.value;
+          if (value != null && dart.test(wrapper.isValue)) {
+            return controller.stream.transform(T, new (start_with.StartWithStreamTransformer$(T)).new(value.value));
+          }
+          return controller.stream;
+        }, dart.fnType(async.Stream$(T), []));
+      }
+      onAdd(event) {
+        T.as(event);
+        return this[_wrapper$].setValue(event);
+      }
+      onAddError(error, stackTrace = null) {
+        if (error == null) dart.nullFailed(I$[7], 132, 26, "error");
+        return this[_wrapper$].setError(error, stackTrace);
+      }
+      get stream() {
+        return this;
+      }
+      get hasValue() {
+        return this[_wrapper$].value != null;
+      }
+      get value() {
+        let wrapper = this[_wrapper$].value;
+        if (wrapper != null) {
+          return wrapper.value;
+        }
+        dart.throw(value_stream.ValueStreamError.hasNoValue());
+      }
+      get valueOrNull() {
+        let t14;
+        t14 = this[_wrapper$].value;
+        return t14 == null ? null : t14.value;
+      }
+      set value(newValue) {
+        T.as(newValue);
+        return this.add(newValue);
+      }
+      get hasError() {
+        return this[_wrapper$].errorAndStackTrace != null;
+      }
+      get errorOrNull() {
+        let t14;
+        t14 = this[_wrapper$].errorAndStackTrace;
+        return t14 == null ? null : t14.error;
+      }
+      get error() {
+        let errorAndSt = this[_wrapper$].errorAndStackTrace;
+        if (errorAndSt != null) {
+          return errorAndSt.error;
+        }
+        dart.throw(value_stream.ValueStreamError.hasNoError());
+      }
+      get stackTrace() {
+        let t14;
+        t14 = this[_wrapper$].errorAndStackTrace;
+        return t14 == null ? null : t14.stackTrace;
+      }
+      createForwardingSubject(R, opts) {
+        let onListen = opts && 'onListen' in opts ? opts.onListen : null;
+        let onCancel = opts && 'onCancel' in opts ? opts.onCancel : null;
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[7], 178, 10, "sync");
+        return behavior_subject.BehaviorSubject$(R).new({onListen: onListen, onCancel: onCancel, sync: sync});
+      }
+      where(test) {
+        if (test == null) dart.nullFailed(I$[7], 189, 47, "test");
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 190, 35, "s");
+          return s.where(test);
+        }, StreamOfTToStreamOfT()));
+      }
+      map(S, convert) {
+        if (convert == null) dart.nullFailed(I$[7], 193, 45, "convert");
+        return this[_forwardBehaviorSubject](S, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 194, 35, "s");
+          return s.map(S, convert);
+        }, dart.fnType(async.Stream$(S), [StreamOfT()])));
+      }
+      asyncMap(E, convert) {
+        if (convert == null) dart.nullFailed(I$[7], 197, 60, "convert");
+        return this[_forwardBehaviorSubject](E, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 198, 35, "s");
+          return s.asyncMap(E, convert);
+        }, dart.fnType(async.Stream$(E), [StreamOfT()])));
+      }
+      asyncExpand(E, convert) {
+        if (convert == null) dart.nullFailed(I$[7], 201, 62, "convert");
+        return this[_forwardBehaviorSubject](E, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 202, 35, "s");
+          return s.asyncExpand(E, convert);
+        }, dart.fnType(async.Stream$(E), [StreamOfT()])));
+      }
+      handleError(onError, opts) {
+        if (onError == null) dart.nullFailed(I$[7], 205, 39, "onError");
+        let test = opts && 'test' in opts ? opts.test : null;
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 207, 35, "s");
+          return s.handleError(onError, {test: test});
+        }, StreamOfTToStreamOfT()));
+      }
+      expand(S, convert) {
+        if (convert == null) dart.nullFailed(I$[7], 210, 60, "convert");
+        return this[_forwardBehaviorSubject](S, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 211, 35, "s");
+          return s.expand(S, convert);
+        }, dart.fnType(async.Stream$(S), [StreamOfT()])));
+      }
+      transform(S, streamTransformer) {
+        async.StreamTransformer$(T, S).as(streamTransformer);
+        if (streamTransformer == null) dart.nullFailed(I$[7], 214, 55, "streamTransformer");
+        return this[_forwardBehaviorSubject](S, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 215, 35, "s");
+          return s.transform(S, streamTransformer);
+        }, dart.fnType(async.Stream$(S), [StreamOfT()])));
+      }
+      cast(R) {
+        return this[_forwardBehaviorSubject](R, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 218, 59, "s");
+          return s.cast(R);
+        }, dart.fnType(async.Stream$(R), [StreamOfT()])));
+      }
+      take(count) {
+        if (count == null) dart.nullFailed(I$[7], 221, 27, "count");
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 222, 35, "s");
+          return s.take(count);
+        }, StreamOfTToStreamOfT()));
+      }
+      takeWhile(test) {
+        if (test == null) dart.nullFailed(I$[7], 225, 53, "test");
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 226, 35, "s");
+          return s.takeWhile(test);
+        }, StreamOfTToStreamOfT()));
+      }
+      skip(count) {
+        if (count == null) dart.nullFailed(I$[7], 229, 27, "count");
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 230, 35, "s");
+          return s.skip(count);
+        }, StreamOfTToStreamOfT()));
+      }
+      skipWhile(test) {
+        if (test == null) dart.nullFailed(I$[7], 233, 53, "test");
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 234, 35, "s");
+          return s.skipWhile(test);
+        }, StreamOfTToStreamOfT()));
+      }
+      distinct(equals = null) {
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 238, 35, "s");
+          return s.distinct(equals);
+        }, StreamOfTToStreamOfT()));
+      }
+      timeout(timeLimit, opts) {
+        if (timeLimit == null) dart.nullFailed(I$[7], 241, 35, "timeLimit");
+        let onTimeout = opts && 'onTimeout' in opts ? opts.onTimeout : null;
+        return this[_forwardBehaviorSubject](T, dart.fn(s => {
+          if (s == null) dart.nullFailed(I$[7], 244, 12, "s");
+          return s.timeout(timeLimit, {onTimeout: onTimeout});
+        }, StreamOfTToStreamOfT()));
+      }
+      [_forwardBehaviorSubject](R, transformerStream) {
+        if (transformerStream == null) dart.nullFailed(I$[7], 247, 39, "transformerStream");
+        let subject = null;
+        let subject$35isSet = false;
+        function subject$35get() {
+          return subject$35isSet ? subject : dart.throw(new _internal.LateError.localNI("subject"));
+        }
+        dart.fn(subject$35get, dart.fnType(behavior_subject.BehaviorSubject$(R), []));
+        function subject$35set(t17) {
+          if (t17 == null) dart.nullFailed(I$[7], 248, 29, "null");
+          subject$35isSet = true;
+          return subject = t17;
+        }
+        dart.fn(subject$35set, dart.fnType(dart.dynamic, [behavior_subject.BehaviorSubject$(R)]));
+        let subscription = null;
+        let subscription$35isSet = false;
+        function subscription$35get() {
+          return subscription$35isSet ? subscription : dart.throw(new _internal.LateError.localNI("subscription"));
+        }
+        dart.fn(subscription$35get, dart.fnType(async.StreamSubscription$(R), []));
+        function subscription$35set(t22) {
+          if (t22 == null) dart.nullFailed(I$[7], 249, 32, "null");
+          subscription$35isSet = true;
+          return subscription = t22;
+        }
+        dart.fn(subscription$35set, dart.fnType(dart.dynamic, [async.StreamSubscription$(R)]));
+        let onListen = dart.fn(() => subscription$35set(transformerStream(this[_stream$]).listen(dart.bind(subject$35get(), 'add'), {onError: dart.bind(subject$35get(), 'addError'), onDone: dart.bind(subject$35get(), 'close')})), dart.fnType(async.StreamSubscription$(R), []));
+        let onCancel = dart.fn(() => subscription$35get().cancel(), T$.VoidToFutureOfvoid());
+        return subject$35set(this.createForwardingSubject(R, {onListen: onListen, onCancel: onCancel, sync: true}));
+      }
+    }
+    (BehaviorSubject.__ = function(controller, _stream, _wrapper) {
+      if (controller == null) dart.nullFailed(I$[7], 49, 25, "controller");
+      if (_stream == null) dart.nullFailed(I$[7], 50, 10, "_stream");
+      if (_wrapper == null) dart.nullFailed(I$[7], 51, 10, "_wrapper");
+      this[_stream$] = _stream;
+      this[_wrapper$] = _wrapper;
+      BehaviorSubject.__proto__.new.call(this, controller, _stream);
+      ;
+    }).prototype = BehaviorSubject.prototype;
+    dart.addTypeTests(BehaviorSubject);
+    BehaviorSubject.prototype[_is_BehaviorSubject_default] = true;
+    dart.addTypeCaches(BehaviorSubject);
+    BehaviorSubject[dart.implements] = () => [value_stream.ValueStream$(T)];
+    dart.setMethodSignature(BehaviorSubject, () => ({
+      __proto__: dart.getMethods(BehaviorSubject.__proto__),
+      createForwardingSubject: dart.gFnType(R => [behavior_subject.BehaviorSubject$(R), [], {onCancel: dart.nullable(dart.fnType(dart.void, [])), onListen: dart.nullable(dart.fnType(dart.void, [])), sync: core.bool}, {}], R => [dart.nullable(core.Object)]),
+      where: dart.fnType(value_stream.ValueStream$(T), [dart.fnType(core.bool, [T])]),
+      map: dart.gFnType(S => [value_stream.ValueStream$(S), [dart.fnType(S, [T])]], S => [dart.nullable(core.Object)]),
+      asyncMap: dart.gFnType(E => [value_stream.ValueStream$(E), [dart.fnType(async.FutureOr$(E), [T])]], E => [dart.nullable(core.Object)]),
+      asyncExpand: dart.gFnType(E => [value_stream.ValueStream$(E), [dart.fnType(dart.nullable(async.Stream$(E)), [T])]], E => [dart.nullable(core.Object)]),
+      handleError: dart.fnType(value_stream.ValueStream$(T), [core.Function], {test: dart.nullable(dart.fnType(core.bool, [dart.dynamic]))}, {}),
+      expand: dart.gFnType(S => [value_stream.ValueStream$(S), [dart.fnType(core.Iterable$(S), [T])]], S => [dart.nullable(core.Object)]),
+      transform: dart.gFnType(S => [value_stream.ValueStream$(S), [dart.nullable(core.Object)]], S => [dart.nullable(core.Object)]),
+      cast: dart.gFnType(R => [value_stream.ValueStream$(R), []], R => [dart.nullable(core.Object)]),
+      take: dart.fnType(value_stream.ValueStream$(T), [core.int]),
+      takeWhile: dart.fnType(value_stream.ValueStream$(T), [dart.fnType(core.bool, [T])]),
+      skip: dart.fnType(value_stream.ValueStream$(T), [core.int]),
+      skipWhile: dart.fnType(value_stream.ValueStream$(T), [dart.fnType(core.bool, [T])]),
+      distinct: dart.fnType(value_stream.ValueStream$(T), [], [dart.nullable(dart.fnType(core.bool, [T, T]))]),
+      timeout: dart.fnType(value_stream.ValueStream$(T), [core.Duration], {onTimeout: dart.nullable(dart.fnType(dart.void, [async.EventSink$(T)]))}, {}),
+      [_forwardBehaviorSubject]: dart.gFnType(R => [value_stream.ValueStream$(R), [dart.fnType(async.Stream$(R), [async.Stream$(T)])]], R => [dart.nullable(core.Object)])
+    }));
+    dart.setGetterSignature(BehaviorSubject, () => ({
+      __proto__: dart.getGetters(BehaviorSubject.__proto__),
+      stream: value_stream.ValueStream$(T),
+      hasValue: core.bool,
+      value: T,
+      valueOrNull: dart.nullable(T),
+      hasError: core.bool,
+      errorOrNull: dart.nullable(core.Object),
+      error: core.Object,
+      stackTrace: dart.nullable(core.StackTrace)
+    }));
+    dart.setSetterSignature(BehaviorSubject, () => ({
+      __proto__: dart.getSetters(BehaviorSubject.__proto__),
+      value: dart.nullable(core.Object)
+    }));
+    dart.setLibraryUri(BehaviorSubject, I$[8]);
+    dart.setFieldSignature(BehaviorSubject, () => ({
+      __proto__: dart.getFields(BehaviorSubject.__proto__),
+      [_wrapper$]: dart.finalFieldType(behavior_subject._Wrapper$(T)),
+      [_stream$]: dart.finalFieldType(async.Stream$(T))
+    }));
+    return BehaviorSubject;
+  });
+  behavior_subject.BehaviorSubject = behavior_subject.BehaviorSubject$();
+  dart.addTypeTests(behavior_subject.BehaviorSubject, _is_BehaviorSubject_default);
+  var value$ = dart.privateName(behavior_subject, "_Wrapper.value");
+  const _is__Wrapper_default = Symbol('_is__Wrapper_default');
+  behavior_subject._Wrapper$ = dart.generic(T => {
+    var ValueWrapperOfT = () => (ValueWrapperOfT = dart.constFn(value_wrapper.ValueWrapper$(T)))();
+    var ValueWrapperNOfT = () => (ValueWrapperNOfT = dart.constFn(dart.nullable(ValueWrapperOfT())))();
+    class _Wrapper extends core.Object {
+      get value() {
+        return this[value$];
+      }
+      set value(value) {
+        this[value$] = ValueWrapperNOfT().as(value);
+      }
+      setValue(event) {
+        T.as(event);
+        this.value = new (ValueWrapperOfT()).new(event);
+        this.isValue = true;
+      }
+      setError(error, stackTrace) {
+        if (error == null) dart.nullFailed(I$[7], 284, 24, "error");
+        this.errorAndStackTrace = new error_and_stacktrace.ErrorAndStackTrace.new(error, stackTrace);
+        this.isValue = false;
+      }
+    }
+    (_Wrapper.new = function() {
+      this.errorAndStackTrace = null;
+      this[value$] = null;
+      this.isValue = false;
+      ;
+    }).prototype = _Wrapper.prototype;
+    (_Wrapper.seeded = function(value) {
+      this.errorAndStackTrace = null;
+      this[value$] = new (ValueWrapperOfT()).new(value);
+      this.isValue = true;
+      ;
+    }).prototype = _Wrapper.prototype;
+    dart.addTypeTests(_Wrapper);
+    _Wrapper.prototype[_is__Wrapper_default] = true;
+    dart.addTypeCaches(_Wrapper);
+    dart.setMethodSignature(_Wrapper, () => ({
+      __proto__: dart.getMethods(_Wrapper.__proto__),
+      setValue: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      setError: dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)])
+    }));
+    dart.setLibraryUri(_Wrapper, I$[8]);
+    dart.setFieldSignature(_Wrapper, () => ({
+      __proto__: dart.getFields(_Wrapper.__proto__),
+      isValue: dart.fieldType(core.bool),
+      value: dart.fieldType(dart.nullable(value_wrapper.ValueWrapper$(T))),
+      errorAndStackTrace: dart.fieldType(dart.nullable(error_and_stacktrace.ErrorAndStackTrace))
+    }));
+    return _Wrapper;
+  });
+  behavior_subject._Wrapper = behavior_subject._Wrapper$();
+  dart.addTypeTests(behavior_subject._Wrapper, _is__Wrapper_default);
+  const _is_ConnectableStream_default = Symbol('_is_ConnectableStream_default');
+  connectable_stream.ConnectableStream$ = dart.generic(T => {
+    class ConnectableStream extends async.StreamView$(T) {}
+    (ConnectableStream.new = function(stream) {
+      if (stream == null) dart.nullFailed(I$[9], 17, 31, "stream");
+      ConnectableStream.__proto__.new.call(this, stream);
+      ;
+    }).prototype = ConnectableStream.prototype;
+    dart.addTypeTests(ConnectableStream);
+    ConnectableStream.prototype[_is_ConnectableStream_default] = true;
+    dart.addTypeCaches(ConnectableStream);
+    dart.setLibraryUri(ConnectableStream, I$[10]);
+    return ConnectableStream;
+  });
+  connectable_stream.ConnectableStream = connectable_stream.ConnectableStream$();
+  dart.addTypeTests(connectable_stream.ConnectableStream, _is_ConnectableStream_default);
+  var __PublishConnectableStream__connection = dart.privateName(connectable_stream, "_#PublishConnectableStream#_connection");
+  var __PublishConnectableStream__connection_isSet = dart.privateName(connectable_stream, "_#PublishConnectableStream#_connection#isSet");
+  var _source$ = dart.privateName(connectable_stream, "_source");
+  var _subject$ = dart.privateName(connectable_stream, "_subject");
+  var _connection = dart.privateName(connectable_stream, "_connection");
+  const _is_PublishConnectableStream_default = Symbol('_is_PublishConnectableStream_default');
+  connectable_stream.PublishConnectableStream$ = dart.generic(T => {
+    var ConnectableStreamSubscriptionOfT = () => (ConnectableStreamSubscriptionOfT = dart.constFn(connectable_stream.ConnectableStreamSubscription$(T)))();
+    class PublishConnectableStream extends connectable_stream.ConnectableStream$(T) {
+      static new(source, opts) {
+        if (source == null) dart.nullFailed(I$[9], 48, 46, "source");
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[9], 48, 60, "sync");
+        return new (connectable_stream.PublishConnectableStream$(T)).__(source, publish_subject.PublishSubject$(T).new({sync: sync}));
+      }
+      get [_connection]() {
+        let t25;
+        if (!dart.test(this[__PublishConnectableStream__connection_isSet])) {
+          let t24 = new (ConnectableStreamSubscriptionOfT()).new(this[_source$].listen(dart.bind(this[_subject$], 'add'), {onError: dart.bind(this[_subject$], 'addError'), onDone: dart.bind(this[_subject$], 'close')}), this[_subject$]);
+          if (dart.test(this[__PublishConnectableStream__connection_isSet])) dart.throw(new _internal.LateError.fieldADI("_connection"));
+          this[__PublishConnectableStream__connection] = t24;
+          this[__PublishConnectableStream__connection_isSet] = true;
+        }
+        t25 = this[__PublishConnectableStream__connection];
+        return t25;
+      }
+      autoConnect(opts) {
+        let connection = opts && 'connection' in opts ? opts.connection : null;
+        this[_subject$].onListen = dart.fn(() => {
+          let t25;
+          let subscription = this[_connection];
+          t25 = connection;
+          t25 == null ? null : t25(subscription);
+        }, T$.VoidTovoid());
+        this[_subject$].onCancel = null;
+        return this[_subject$];
+      }
+      connect() {
+        this[_subject$].onListen = this[_subject$].onCancel = null;
+        return this[_connection];
+      }
+      refCount() {
+        let subscription = null;
+        this[_subject$].onListen = dart.fn(() => subscription = this[_connection], T$.VoidTovoid());
+        this[_subject$].onCancel = dart.fn(() => {
+          let t25;
+          t25 = subscription;
+          return t25 == null ? null : t25.cancel();
+        }, T$.VoidToFutureN());
+        return this[_subject$];
+      }
+    }
+    (PublishConnectableStream.__ = function(_source, _subject) {
+      if (_source == null) dart.nullFailed(I$[9], 52, 35, "_source");
+      if (_subject == null) dart.nullFailed(I$[9], 52, 49, "_subject");
+      this[__PublishConnectableStream__connection] = null;
+      this[__PublishConnectableStream__connection_isSet] = false;
+      this[_source$] = _source;
+      this[_subject$] = _subject;
+      PublishConnectableStream.__proto__.new.call(this, _subject);
+      ;
+    }).prototype = PublishConnectableStream.prototype;
+    dart.addTypeTests(PublishConnectableStream);
+    PublishConnectableStream.prototype[_is_PublishConnectableStream_default] = true;
+    dart.addTypeCaches(PublishConnectableStream);
+    dart.setMethodSignature(PublishConnectableStream, () => ({
+      __proto__: dart.getMethods(PublishConnectableStream.__proto__),
+      autoConnect: dart.fnType(async.Stream$(T), [], {connection: dart.nullable(dart.fnType(dart.void, [async.StreamSubscription$(T)]))}, {}),
+      connect: dart.fnType(async.StreamSubscription$(T), []),
+      refCount: dart.fnType(async.Stream$(T), [])
+    }));
+    dart.setGetterSignature(PublishConnectableStream, () => ({
+      __proto__: dart.getGetters(PublishConnectableStream.__proto__),
+      [_connection]: connectable_stream.ConnectableStreamSubscription$(T)
+    }));
+    dart.setLibraryUri(PublishConnectableStream, I$[10]);
+    dart.setFieldSignature(PublishConnectableStream, () => ({
+      __proto__: dart.getFields(PublishConnectableStream.__proto__),
+      [_source$]: dart.finalFieldType(async.Stream$(T)),
+      [_subject$]: dart.finalFieldType(publish_subject.PublishSubject$(T)),
+      [__PublishConnectableStream__connection]: dart.fieldType(dart.nullable(connectable_stream.ConnectableStreamSubscription$(T))),
+      [__PublishConnectableStream__connection_isSet]: dart.fieldType(core.bool)
+    }));
+    return PublishConnectableStream;
+  });
+  connectable_stream.PublishConnectableStream = connectable_stream.PublishConnectableStream$();
+  dart.addTypeTests(connectable_stream.PublishConnectableStream, _is_PublishConnectableStream_default);
+  var __ValueConnectableStream__connection = dart.privateName(connectable_stream, "_#ValueConnectableStream#_connection");
+  var __ValueConnectableStream__connection_isSet = dart.privateName(connectable_stream, "_#ValueConnectableStream#_connection#isSet");
+  const _is_ValueConnectableStream_default = Symbol('_is_ValueConnectableStream_default');
+  connectable_stream.ValueConnectableStream$ = dart.generic(T => {
+    var ConnectableStreamSubscriptionOfT = () => (ConnectableStreamSubscriptionOfT = dart.constFn(connectable_stream.ConnectableStreamSubscription$(T)))();
+    class ValueConnectableStream extends connectable_stream.ConnectableStream$(T) {
+      static new(source, opts) {
+        if (source == null) dart.nullFailed(I$[9], 106, 44, "source");
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[9], 106, 58, "sync");
+        return new (connectable_stream.ValueConnectableStream$(T)).__(source, behavior_subject.BehaviorSubject$(T).new({sync: sync}));
+      }
+      static seeded(source, seedValue, opts) {
+        if (source == null) dart.nullFailed(I$[9], 115, 51, "source");
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[9], 116, 17, "sync");
+        return new (connectable_stream.ValueConnectableStream$(T)).__(source, behavior_subject.BehaviorSubject$(T).seeded(seedValue, {sync: sync}));
+      }
+      get [_connection]() {
+        let t26;
+        if (!dart.test(this[__ValueConnectableStream__connection_isSet])) {
+          let t25 = new (ConnectableStreamSubscriptionOfT()).new(this[_source$].listen(dart.bind(this[_subject$], 'add'), {onError: dart.bind(this[_subject$], 'addError'), onDone: dart.bind(this[_subject$], 'close')}), this[_subject$]);
+          if (dart.test(this[__ValueConnectableStream__connection_isSet])) dart.throw(new _internal.LateError.fieldADI("_connection"));
+          this[__ValueConnectableStream__connection] = t25;
+          this[__ValueConnectableStream__connection_isSet] = true;
+        }
+        t26 = this[__ValueConnectableStream__connection];
+        return t26;
+      }
+      autoConnect(opts) {
+        let connection = opts && 'connection' in opts ? opts.connection : null;
+        this[_subject$].onListen = dart.fn(() => {
+          let t26;
+          let subscription = this[_connection];
+          t26 = connection;
+          t26 == null ? null : t26(subscription);
+        }, T$.VoidTovoid());
+        this[_subject$].onCancel = null;
+        return this[_subject$];
+      }
+      connect() {
+        this[_subject$].onListen = this[_subject$].onCancel = null;
+        return this[_connection];
+      }
+      refCount() {
+        let subscription = null;
+        this[_subject$].onListen = dart.fn(() => subscription = this[_connection], T$.VoidTovoid());
+        this[_subject$].onCancel = dart.fn(() => {
+          let t26;
+          t26 = subscription;
+          return t26 == null ? null : t26.cancel();
+        }, T$.VoidToFutureNOfvoid());
+        return this[_subject$];
+      }
+      get hasValue() {
+        return this[_subject$].hasValue;
+      }
+      get value() {
+        return this[_subject$].value;
+      }
+      get valueOrNull() {
+        return this[_subject$].valueOrNull;
+      }
+      get error() {
+        return this[_subject$].error;
+      }
+      get errorOrNull() {
+        return this[_subject$].errorOrNull;
+      }
+      get hasError() {
+        return this[_subject$].hasError;
+      }
+      get stackTrace() {
+        return this[_subject$].stackTrace;
+      }
+    }
+    (ValueConnectableStream.__ = function(_source, _subject) {
+      if (_source == null) dart.nullFailed(I$[9], 101, 33, "_source");
+      if (_subject == null) dart.nullFailed(I$[9], 101, 47, "_subject");
+      this[__ValueConnectableStream__connection] = null;
+      this[__ValueConnectableStream__connection_isSet] = false;
+      this[_source$] = _source;
+      this[_subject$] = _subject;
+      ValueConnectableStream.__proto__.new.call(this, _subject);
+      ;
+    }).prototype = ValueConnectableStream.prototype;
+    dart.addTypeTests(ValueConnectableStream);
+    ValueConnectableStream.prototype[_is_ValueConnectableStream_default] = true;
+    dart.addTypeCaches(ValueConnectableStream);
+    ValueConnectableStream[dart.implements] = () => [value_stream.ValueStream$(T)];
+    dart.setMethodSignature(ValueConnectableStream, () => ({
+      __proto__: dart.getMethods(ValueConnectableStream.__proto__),
+      autoConnect: dart.fnType(value_stream.ValueStream$(T), [], {connection: dart.nullable(dart.fnType(dart.void, [async.StreamSubscription$(T)]))}, {}),
+      connect: dart.fnType(async.StreamSubscription$(T), []),
+      refCount: dart.fnType(value_stream.ValueStream$(T), [])
+    }));
+    dart.setGetterSignature(ValueConnectableStream, () => ({
+      __proto__: dart.getGetters(ValueConnectableStream.__proto__),
+      [_connection]: connectable_stream.ConnectableStreamSubscription$(T),
+      hasValue: core.bool,
+      value: T,
+      valueOrNull: dart.nullable(T),
+      error: core.Object,
+      errorOrNull: dart.nullable(core.Object),
+      hasError: core.bool,
+      stackTrace: dart.nullable(core.StackTrace)
+    }));
+    dart.setLibraryUri(ValueConnectableStream, I$[10]);
+    dart.setFieldSignature(ValueConnectableStream, () => ({
+      __proto__: dart.getFields(ValueConnectableStream.__proto__),
+      [_source$]: dart.finalFieldType(async.Stream$(T)),
+      [_subject$]: dart.finalFieldType(behavior_subject.BehaviorSubject$(T)),
+      [__ValueConnectableStream__connection]: dart.fieldType(dart.nullable(connectable_stream.ConnectableStreamSubscription$(T))),
+      [__ValueConnectableStream__connection_isSet]: dart.fieldType(core.bool)
+    }));
+    return ValueConnectableStream;
+  });
+  connectable_stream.ValueConnectableStream = connectable_stream.ValueConnectableStream$();
+  dart.addTypeTests(connectable_stream.ValueConnectableStream, _is_ValueConnectableStream_default);
+  var __ReplayConnectableStream__connection = dart.privateName(connectable_stream, "_#ReplayConnectableStream#_connection");
+  var __ReplayConnectableStream__connection_isSet = dart.privateName(connectable_stream, "_#ReplayConnectableStream#_connection#isSet");
+  const _is_ReplayConnectableStream_default = Symbol('_is_ReplayConnectableStream_default');
+  connectable_stream.ReplayConnectableStream$ = dart.generic(T => {
+    var ConnectableStreamSubscriptionOfT = () => (ConnectableStreamSubscriptionOfT = dart.constFn(connectable_stream.ConnectableStreamSubscription$(T)))();
+    class ReplayConnectableStream extends connectable_stream.ConnectableStream$(T) {
+      static new(stream, opts) {
+        if (stream == null) dart.nullFailed(I$[9], 193, 45, "stream");
+        let maxSize = opts && 'maxSize' in opts ? opts.maxSize : null;
+        let sync = opts && 'sync' in opts ? opts.sync : false;
+        if (sync == null) dart.nullFailed(I$[9], 194, 27, "sync");
+        return new (connectable_stream.ReplayConnectableStream$(T)).__(stream, replay_subject.ReplaySubject$(T).new({maxSize: maxSize, sync: sync}));
+      }
+      get [_connection]() {
+        let t27;
+        if (!dart.test(this[__ReplayConnectableStream__connection_isSet])) {
+          let t26 = new (ConnectableStreamSubscriptionOfT()).new(this[_source$].listen(dart.bind(this[_subject$], 'add'), {onError: dart.bind(this[_subject$], 'addError'), onDone: dart.bind(this[_subject$], 'close')}), this[_subject$]);
+          if (dart.test(this[__ReplayConnectableStream__connection_isSet])) dart.throw(new _internal.LateError.fieldADI("_connection"));
+          this[__ReplayConnectableStream__connection] = t26;
+          this[__ReplayConnectableStream__connection_isSet] = true;
+        }
+        t27 = this[__ReplayConnectableStream__connection];
+        return t27;
+      }
+      autoConnect(opts) {
+        let connection = opts && 'connection' in opts ? opts.connection : null;
+        this[_subject$].onListen = dart.fn(() => {
+          let t27;
+          let subscription = this[_connection];
+          t27 = connection;
+          t27 == null ? null : t27(subscription);
+        }, T$.VoidTovoid());
+        this[_subject$].onCancel = null;
+        return this[_subject$];
+      }
+      connect() {
+        this[_subject$].onListen = this[_subject$].onCancel = null;
+        return this[_connection];
+      }
+      refCount() {
+        let subscription = null;
+        this[_subject$].onListen = dart.fn(() => subscription = this[_connection], T$.VoidTovoid());
+        this[_subject$].onCancel = dart.fn(() => {
+          let t27;
+          t27 = subscription;
+          return t27 == null ? null : t27.cancel();
+        }, T$.VoidToFutureN());
+        return this[_subject$];
+      }
+      get values() {
+        return this[_subject$].values;
+      }
+      get errors() {
+        return this[_subject$].errors;
+      }
+      get stackTraces() {
+        return this[_subject$].stackTraces;
+      }
+    }
+    (ReplayConnectableStream.__ = function(_source, _subject) {
+      if (_source == null) dart.nullFailed(I$[9], 201, 34, "_source");
+      if (_subject == null) dart.nullFailed(I$[9], 201, 48, "_subject");
+      this[__ReplayConnectableStream__connection] = null;
+      this[__ReplayConnectableStream__connection_isSet] = false;
+      this[_source$] = _source;
+      this[_subject$] = _subject;
+      ReplayConnectableStream.__proto__.new.call(this, _subject);
+      ;
+    }).prototype = ReplayConnectableStream.prototype;
+    dart.addTypeTests(ReplayConnectableStream);
+    ReplayConnectableStream.prototype[_is_ReplayConnectableStream_default] = true;
+    dart.addTypeCaches(ReplayConnectableStream);
+    ReplayConnectableStream[dart.implements] = () => [replay_stream.ReplayStream$(T)];
+    dart.setMethodSignature(ReplayConnectableStream, () => ({
+      __proto__: dart.getMethods(ReplayConnectableStream.__proto__),
+      autoConnect: dart.fnType(replay_stream.ReplayStream$(T), [], {connection: dart.nullable(dart.fnType(dart.void, [async.StreamSubscription$(T)]))}, {}),
+      connect: dart.fnType(async.StreamSubscription$(T), []),
+      refCount: dart.fnType(replay_stream.ReplayStream$(T), [])
+    }));
+    dart.setGetterSignature(ReplayConnectableStream, () => ({
+      __proto__: dart.getGetters(ReplayConnectableStream.__proto__),
+      [_connection]: connectable_stream.ConnectableStreamSubscription$(T),
+      values: core.List$(T),
+      errors: core.List$(core.Object),
+      stackTraces: core.List$(dart.nullable(core.StackTrace))
+    }));
+    dart.setLibraryUri(ReplayConnectableStream, I$[10]);
+    dart.setFieldSignature(ReplayConnectableStream, () => ({
+      __proto__: dart.getFields(ReplayConnectableStream.__proto__),
+      [_source$]: dart.finalFieldType(async.Stream$(T)),
+      [_subject$]: dart.finalFieldType(replay_subject.ReplaySubject$(T)),
+      [__ReplayConnectableStream__connection]: dart.fieldType(dart.nullable(connectable_stream.ConnectableStreamSubscription$(T))),
+      [__ReplayConnectableStream__connection_isSet]: dart.fieldType(core.bool)
+    }));
+    return ReplayConnectableStream;
+  });
+  connectable_stream.ReplayConnectableStream = connectable_stream.ReplayConnectableStream$();
+  dart.addTypeTests(connectable_stream.ReplayConnectableStream, _is_ReplayConnectableStream_default);
+  const _is_ConnectableStreamSubscription_default = Symbol('_is_ConnectableStreamSubscription_default');
+  connectable_stream.ConnectableStreamSubscription$ = dart.generic(T => {
+    class ConnectableStreamSubscription extends async.StreamSubscription$(T) {
+      cancel() {
+        return this[_source$].cancel().then(dart.void, dart.fn(_ => this[_subject$].close(), T$.voidToFuture()));
+      }
+      asFuture(E, futureValue = null) {
+        return this[_source$].asFuture(E, futureValue);
+      }
+      get isPaused() {
+        return this[_source$].isPaused;
+      }
+      onData(handleData) {
+        return this[_source$].onData(handleData);
+      }
+      onDone(handleDone) {
+        return this[_source$].onDone(handleDone);
+      }
+      onError(handleError) {
+        return this[_source$].onError(handleError);
+      }
+      pause(resumeSignal = null) {
+        return this[_source$].pause(resumeSignal);
+      }
+      resume() {
+        return this[_source$].resume();
+      }
+    }
+    (ConnectableStreamSubscription.new = function(_source, _subject) {
+      if (_source == null) dart.nullFailed(I$[9], 259, 38, "_source");
+      if (_subject == null) dart.nullFailed(I$[9], 259, 52, "_subject");
+      this[_source$] = _source;
+      this[_subject$] = _subject;
+      ;
+    }).prototype = ConnectableStreamSubscription.prototype;
+    dart.addTypeTests(ConnectableStreamSubscription);
+    ConnectableStreamSubscription.prototype[_is_ConnectableStreamSubscription_default] = true;
+    dart.addTypeCaches(ConnectableStreamSubscription);
+    dart.setMethodSignature(ConnectableStreamSubscription, () => ({
+      __proto__: dart.getMethods(ConnectableStreamSubscription.__proto__),
+      cancel: dart.fnType(async.Future, []),
+      asFuture: dart.gFnType(E => [async.Future$(E), [], [dart.nullable(E)]], E => [dart.nullable(core.Object)]),
+      onData: dart.fnType(dart.void, [dart.nullable(dart.fnType(dart.void, [T]))]),
+      onDone: dart.fnType(dart.void, [dart.nullable(dart.fnType(dart.void, []))]),
+      onError: dart.fnType(dart.void, [dart.nullable(core.Function)]),
+      pause: dart.fnType(dart.void, [], [dart.nullable(async.Future$(dart.void))]),
+      resume: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(ConnectableStreamSubscription, () => ({
+      __proto__: dart.getGetters(ConnectableStreamSubscription.__proto__),
+      isPaused: core.bool
+    }));
+    dart.setLibraryUri(ConnectableStreamSubscription, I$[10]);
+    dart.setFieldSignature(ConnectableStreamSubscription, () => ({
+      __proto__: dart.getFields(ConnectableStreamSubscription.__proto__),
+      [_source$]: dart.finalFieldType(async.StreamSubscription$(T)),
+      [_subject$]: dart.finalFieldType(subject.Subject$(T))
+    }));
+    return ConnectableStreamSubscription;
+  });
+  connectable_stream.ConnectableStreamSubscription = connectable_stream.ConnectableStreamSubscription$();
+  dart.addTypeTests(connectable_stream.ConnectableStreamSubscription, _is_ConnectableStreamSubscription_default);
+  connectable_stream['ConnectableStreamExtensions|publish'] = function ConnectableStreamExtensions$124publish(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 314, 24, "#this");
+    return connectable_stream.PublishConnectableStream$(T).new($this, {sync: true});
+  };
+  connectable_stream['ConnectableStreamExtensions|get#publish'] = function ConnectableStreamExtensions$124get$35publish(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 314, 24, "#this");
+    return dart.fn(() => connectable_stream['ConnectableStreamExtensions|publish'](T, $this), dart.fnType(connectable_stream.ConnectableStream$(T), []));
+  };
+  connectable_stream['ConnectableStreamExtensions|publishValue'] = function ConnectableStreamExtensions$124publishValue(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 348, 29, "#this");
+    return connectable_stream.ValueConnectableStream$(T).new($this, {sync: true});
+  };
+  connectable_stream['ConnectableStreamExtensions|get#publishValue'] = function ConnectableStreamExtensions$124get$35publishValue(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 348, 29, "#this");
+    return dart.fn(() => connectable_stream['ConnectableStreamExtensions|publishValue'](T, $this), dart.fnType(connectable_stream.ValueConnectableStream$(T), []));
+  };
+  connectable_stream['ConnectableStreamExtensions|publishValueSeeded'] = function ConnectableStreamExtensions$124publishValueSeeded(T, $this, seedValue) {
+    if ($this == null) dart.nullFailed(I$[9], 383, 29, "#this");
+    return connectable_stream.ValueConnectableStream$(T).seeded($this, seedValue, {sync: true});
+  };
+  connectable_stream['ConnectableStreamExtensions|get#publishValueSeeded'] = function ConnectableStreamExtensions$124get$35publishValueSeeded(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 383, 29, "#this");
+    return dart.fn(seedValue => connectable_stream['ConnectableStreamExtensions|publishValueSeeded'](T, $this, seedValue), dart.fnType(connectable_stream.ValueConnectableStream$(T), [T]));
+  };
+  connectable_stream['ConnectableStreamExtensions|publishReplay'] = function ConnectableStreamExtensions$124publishReplay(T, $this, opts) {
+    if ($this == null) dart.nullFailed(I$[9], 418, 30, "#this");
+    let maxSize = opts && 'maxSize' in opts ? opts.maxSize : null;
+    return connectable_stream.ReplayConnectableStream$(T).new($this, {maxSize: maxSize, sync: true});
+  };
+  connectable_stream['ConnectableStreamExtensions|get#publishReplay'] = function ConnectableStreamExtensions$124get$35publishReplay(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 418, 30, "#this");
+    return dart.fn(opts => {
+      let maxSize = opts && 'maxSize' in opts ? opts.maxSize : null;
+      return connectable_stream['ConnectableStreamExtensions|publishReplay'](T, $this, {maxSize: maxSize});
+    }, dart.fnType(connectable_stream.ReplayConnectableStream$(T), [], {maxSize: T$.intN()}, {}));
+  };
+  connectable_stream['ConnectableStreamExtensions|share'] = function ConnectableStreamExtensions$124share(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 442, 13, "#this");
+    return connectable_stream['ConnectableStreamExtensions|publish'](T, $this).refCount();
+  };
+  connectable_stream['ConnectableStreamExtensions|get#share'] = function ConnectableStreamExtensions$124get$35share(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 442, 13, "#this");
+    return dart.fn(() => connectable_stream['ConnectableStreamExtensions|share'](T, $this), dart.fnType(async.Stream$(T), []));
+  };
+  connectable_stream['ConnectableStreamExtensions|shareValue'] = function ConnectableStreamExtensions$124shareValue(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 476, 18, "#this");
+    return connectable_stream['ConnectableStreamExtensions|publishValue'](T, $this).refCount();
+  };
+  connectable_stream['ConnectableStreamExtensions|get#shareValue'] = function ConnectableStreamExtensions$124get$35shareValue(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 476, 18, "#this");
+    return dart.fn(() => connectable_stream['ConnectableStreamExtensions|shareValue'](T, $this), dart.fnType(value_stream.ValueStream$(T), []));
+  };
+  connectable_stream['ConnectableStreamExtensions|shareValueSeeded'] = function ConnectableStreamExtensions$124shareValueSeeded(T, $this, seedValue) {
+    if ($this == null) dart.nullFailed(I$[9], 511, 18, "#this");
+    return connectable_stream['ConnectableStreamExtensions|publishValueSeeded'](T, $this, seedValue).refCount();
+  };
+  connectable_stream['ConnectableStreamExtensions|get#shareValueSeeded'] = function ConnectableStreamExtensions$124get$35shareValueSeeded(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 511, 18, "#this");
+    return dart.fn(seedValue => connectable_stream['ConnectableStreamExtensions|shareValueSeeded'](T, $this, seedValue), dart.fnType(value_stream.ValueStream$(T), [T]));
+  };
+  connectable_stream['ConnectableStreamExtensions|shareReplay'] = function ConnectableStreamExtensions$124shareReplay(T, $this, opts) {
+    if ($this == null) dart.nullFailed(I$[9], 547, 19, "#this");
+    let maxSize = opts && 'maxSize' in opts ? opts.maxSize : null;
+    return connectable_stream['ConnectableStreamExtensions|publishReplay'](T, $this, {maxSize: maxSize}).refCount();
+  };
+  connectable_stream['ConnectableStreamExtensions|get#shareReplay'] = function ConnectableStreamExtensions$124get$35shareReplay(T, $this) {
+    if ($this == null) dart.nullFailed(I$[9], 547, 19, "#this");
+    return dart.fn(opts => {
+      let maxSize = opts && 'maxSize' in opts ? opts.maxSize : null;
+      return connectable_stream['ConnectableStreamExtensions|shareReplay'](T, $this, {maxSize: maxSize});
+    }, dart.fnType(replay_stream.ReplayStream$(T), [], {maxSize: T$.intN()}, {}));
+  };
+  rx.Rx = class Rx extends core.Object {
+    static combineLatest(T, R, streams, combiner) {
+      if (streams == null) dart.nullFailed(I$[11], 100, 31, "streams");
+      if (combiner == null) dart.nullFailed(I$[11], 100, 67, "combiner");
+      return new (combine_latest.CombineLatestStream$(T, R)).new(streams, combiner);
+    }
+    static combineLatestList(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 122, 67, "streams");
+      return combine_latest.CombineLatestStream.list(T, streams);
+    }
+    static combineLatest2(A, B, T, streamA, streamB, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 141, 54, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 141, 73, "streamB");
+      if (combiner == null) dart.nullFailed(I$[11], 142, 32, "combiner");
+      return combine_latest.CombineLatestStream.combine2(A, B, T, streamA, streamB, combiner);
+    }
+    static combineLatest3(A, B, C, T, streamA, streamB, streamC, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 163, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 164, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 165, 21, "streamC");
+      if (combiner == null) dart.nullFailed(I$[11], 166, 37, "combiner");
+      return combine_latest.CombineLatestStream.combine3(A, B, C, T, streamA, streamB, streamC, combiner);
+    }
+    static combineLatest4(A, B, C, D, T, streamA, streamB, streamC, streamD, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 188, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 189, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 190, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 191, 21, "streamD");
+      if (combiner == null) dart.nullFailed(I$[11], 192, 42, "combiner");
+      return combine_latest.CombineLatestStream.combine4(A, B, C, D, T, streamA, streamB, streamC, streamD, combiner);
+    }
+    static combineLatest5(A, B, C, D, E, T, streamA, streamB, streamC, streamD, streamE, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 216, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 217, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 218, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 219, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 220, 21, "streamE");
+      if (combiner == null) dart.nullFailed(I$[11], 221, 47, "combiner");
+      return combine_latest.CombineLatestStream.combine5(A, B, C, D, E, T, streamA, streamB, streamC, streamD, streamE, combiner);
+    }
+    static combineLatest6(A, B, C, D, E, F, T, streamA, streamB, streamC, streamD, streamE, streamF, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 246, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 247, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 248, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 249, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 250, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 251, 21, "streamF");
+      if (combiner == null) dart.nullFailed(I$[11], 252, 52, "combiner");
+      return combine_latest.CombineLatestStream.combine6(A, B, C, D, E, F, T, streamA, streamB, streamC, streamD, streamE, streamF, combiner);
+    }
+    static combineLatest7(A, B, C, D, E, F, G, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 278, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 279, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 280, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 281, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 282, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 283, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 284, 21, "streamG");
+      if (combiner == null) dart.nullFailed(I$[11], 285, 57, "combiner");
+      return combine_latest.CombineLatestStream.combine7(A, B, C, D, E, F, G, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, combiner);
+    }
+    static combineLatest8(A, B, C, D, E, F, G, H, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 312, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 313, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 314, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 315, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 316, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 317, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 318, 21, "streamG");
+      if (streamH == null) dart.nullFailed(I$[11], 319, 21, "streamH");
+      if (combiner == null) dart.nullFailed(I$[11], 320, 62, "combiner");
+      return combine_latest.CombineLatestStream.combine8(A, B, C, D, E, F, G, H, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, combiner);
+    }
+    static combineLatest9(A, B, C, D, E, F, G, H, I, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 357, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 358, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 359, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 360, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 361, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 362, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 363, 21, "streamG");
+      if (streamH == null) dart.nullFailed(I$[11], 364, 21, "streamH");
+      if (streamI == null) dart.nullFailed(I$[11], 365, 21, "streamI");
+      if (combiner == null) dart.nullFailed(I$[11], 366, 67, "combiner");
+      return combine_latest.CombineLatestStream.combine9(A, B, C, D, E, F, G, H, I, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI, combiner);
+    }
+    static concat(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 399, 50, "streams");
+      return new (concat.ConcatStream$(T)).new(streams);
+    }
+    static concatEager(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 423, 55, "streams");
+      return new (concat_eager.ConcatEagerStream$(T)).new(streams);
+    }
+    static defer(T, streamFactory, opts) {
+      if (streamFactory == null) dart.nullFailed(I$[11], 440, 50, "streamFactory");
+      let reusable = opts && 'reusable' in opts ? opts.reusable : false;
+      if (reusable == null) dart.nullFailed(I$[11], 441, 17, "reusable");
+      return new (defer.DeferStream$(T)).new(streamFactory, {reusable: reusable});
+    }
+    static forkJoin(T, R, streams, combiner) {
+      if (streams == null) dart.nullFailed(I$[11], 478, 31, "streams");
+      if (combiner == null) dart.nullFailed(I$[11], 478, 67, "combiner");
+      return new (fork_join.ForkJoinStream$(T, R)).new(streams, combiner);
+    }
+    static forkJoinList(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 495, 62, "streams");
+      return fork_join.ForkJoinStream.list(T, streams);
+    }
+    static forkJoin2(A, B, T, streamA, streamB, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 509, 49, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 509, 68, "streamB");
+      if (combiner == null) dart.nullFailed(I$[11], 510, 32, "combiner");
+      return fork_join.ForkJoinStream.combine2(A, B, T, streamA, streamB, combiner);
+    }
+    static forkJoin3(A, B, C, T, streamA, streamB, streamC, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 525, 52, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 525, 71, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 526, 21, "streamC");
+      if (combiner == null) dart.nullFailed(I$[11], 526, 56, "combiner");
+      return fork_join.ForkJoinStream.combine3(A, B, C, T, streamA, streamB, streamC, combiner);
+    }
+    static forkJoin4(A, B, C, D, T, streamA, streamB, streamC, streamD, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 543, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 544, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 545, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 546, 21, "streamD");
+      if (combiner == null) dart.nullFailed(I$[11], 547, 42, "combiner");
+      return fork_join.ForkJoinStream.combine4(A, B, C, D, T, streamA, streamB, streamC, streamD, combiner);
+    }
+    static forkJoin5(A, B, C, D, E, T, streamA, streamB, streamC, streamD, streamE, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 565, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 566, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 567, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 568, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 569, 21, "streamE");
+      if (combiner == null) dart.nullFailed(I$[11], 570, 47, "combiner");
+      return fork_join.ForkJoinStream.combine5(A, B, C, D, E, T, streamA, streamB, streamC, streamD, streamE, combiner);
+    }
+    static forkJoin6(A, B, C, D, E, F, T, streamA, streamB, streamC, streamD, streamE, streamF, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 590, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 591, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 592, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 593, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 594, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 595, 21, "streamF");
+      if (combiner == null) dart.nullFailed(I$[11], 596, 52, "combiner");
+      return fork_join.ForkJoinStream.combine6(A, B, C, D, E, F, T, streamA, streamB, streamC, streamD, streamE, streamF, combiner);
+    }
+    static forkJoin7(A, B, C, D, E, F, G, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 617, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 618, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 619, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 620, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 621, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 622, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 623, 21, "streamG");
+      if (combiner == null) dart.nullFailed(I$[11], 624, 57, "combiner");
+      return fork_join.ForkJoinStream.combine7(A, B, C, D, E, F, G, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, combiner);
+    }
+    static forkJoin8(A, B, C, D, E, F, G, H, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 646, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 647, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 648, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 649, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 650, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 651, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 652, 21, "streamG");
+      if (streamH == null) dart.nullFailed(I$[11], 653, 21, "streamH");
+      if (combiner == null) dart.nullFailed(I$[11], 654, 62, "combiner");
+      return fork_join.ForkJoinStream.combine8(A, B, C, D, E, F, G, H, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, combiner);
+    }
+    static forkJoin9(A, B, C, D, E, F, G, H, I, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI, combiner) {
+      if (streamA == null) dart.nullFailed(I$[11], 686, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 687, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 688, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 689, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 690, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 691, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 692, 21, "streamG");
+      if (streamH == null) dart.nullFailed(I$[11], 693, 21, "streamH");
+      if (streamI == null) dart.nullFailed(I$[11], 694, 21, "streamI");
+      if (combiner == null) dart.nullFailed(I$[11], 695, 67, "combiner");
+      return fork_join.ForkJoinStream.combine9(A, B, C, D, E, F, G, H, I, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI, combiner);
+    }
+    static fromCallable(T, callable, opts) {
+      if (callable == null) dart.nullFailed(I$[11], 732, 59, "callable");
+      let reusable = opts && 'reusable' in opts ? opts.reusable : false;
+      if (reusable == null) dart.nullFailed(I$[11], 733, 17, "reusable");
+      return new (from_callable.FromCallableStream$(T)).new(callable, {reusable: reusable});
+    }
+    static merge(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 751, 49, "streams");
+      return new (merge.MergeStream$(T)).new(streams);
+    }
+    static never(T) {
+      return new (never.NeverStream$(T)).new();
+    }
+    static race(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 782, 48, "streams");
+      return new (race.RaceStream$(T)).new(streams);
+    }
+    static range(startInclusive, endInclusive) {
+      if (startInclusive == null) dart.nullFailed(I$[11], 793, 32, "startInclusive");
+      if (endInclusive == null) dart.nullFailed(I$[11], 793, 52, "endInclusive");
+      return new range.RangeStream.new(startInclusive, endInclusive);
+    }
+    static repeat(T, streamFactory, count = null) {
+      if (streamFactory == null) dart.nullFailed(I$[11], 807, 66, "streamFactory");
+      return new (repeat.RepeatStream$(T)).new(streamFactory, count);
+    }
+    static retry(T, streamFactory, count = null) {
+      if (streamFactory == null) dart.nullFailed(I$[11], 831, 50, "streamFactory");
+      return new (retry.RetryStream$(T)).new(streamFactory, count);
+    }
+    static retryWhen(T, streamFactory, retryWhenFactory) {
+      if (streamFactory == null) dart.nullFailed(I$[11], 887, 26, "streamFactory");
+      if (retryWhenFactory == null) dart.nullFailed(I$[11], 888, 64, "retryWhenFactory");
+      return new (retry_when.RetryWhenStream$(T)).new(streamFactory, retryWhenFactory);
+    }
+    static sequenceEqual(A, B, stream, other, opts) {
+      if (stream == null) dart.nullFailed(I$[11], 905, 15, "stream");
+      if (other == null) dart.nullFailed(I$[11], 906, 15, "other");
+      let equals = opts && 'equals' in opts ? opts.equals : null;
+      let errorEquals = opts && 'errorEquals' in opts ? opts.errorEquals : null;
+      return new (sequence_equal.SequenceEqualStream$(A, B)).new(stream, other, {dataEquals: equals, errorEquals: errorEquals});
+    }
+    static switchLatest(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 941, 54, "streams");
+      return new (switch_latest.SwitchLatestStream$(T)).new(streams);
+    }
+    static timer(T, value, duration) {
+      if (duration == null) dart.nullFailed(I$[11], 950, 47, "duration");
+      return new (timer.TimerStream$(T)).new(value, duration);
+    }
+    static using(T, R, resourceFactory, streamFactory, disposer) {
+      if (resourceFactory == null) dart.nullFailed(I$[11], 973, 18, "resourceFactory");
+      if (streamFactory == null) dart.nullFailed(I$[11], 974, 27, "streamFactory");
+      if (disposer == null) dart.nullFailed(I$[11], 975, 32, "disposer");
+      return new (using.UsingStream$(T, R)).new(resourceFactory, streamFactory, disposer);
+    }
+    static zip2(A, B, T, streamA, streamB, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1002, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1002, 40, "streamB");
+      if (zipper == null) dart.nullFailed(I$[11], 1002, 70, "zipper");
+      return zip.ZipStream.zip2(A, B, T, streamA, streamB, zipper);
+    }
+    static zip(T, R, streams, zipper) {
+      if (streams == null) dart.nullFailed(I$[11], 1034, 31, "streams");
+      if (zipper == null) dart.nullFailed(I$[11], 1034, 67, "zipper");
+      return new (zip.ZipStream$(T, R)).new(streams, zipper);
+    }
+    static zipList(T, streams) {
+      if (streams == null) dart.nullFailed(I$[11], 1064, 57, "streams");
+      return zip.ZipStream.list(T, streams);
+    }
+    static zip3(A, B, C, T, streamA, streamB, streamC, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1090, 47, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1090, 66, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 1091, 21, "streamC");
+      if (zipper == null) dart.nullFailed(I$[11], 1091, 56, "zipper");
+      return zip.ZipStream.zip3(A, B, C, T, streamA, streamB, streamC, zipper);
+    }
+    static zip4(A, B, C, D, T, streamA, streamB, streamC, streamD, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1119, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1120, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 1121, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 1122, 21, "streamD");
+      if (zipper == null) dart.nullFailed(I$[11], 1123, 42, "zipper");
+      return zip.ZipStream.zip4(A, B, C, D, T, streamA, streamB, streamC, streamD, zipper);
+    }
+    static zip5(A, B, C, D, E, T, streamA, streamB, streamC, streamD, streamE, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1152, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1153, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 1154, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 1155, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 1156, 21, "streamE");
+      if (zipper == null) dart.nullFailed(I$[11], 1157, 47, "zipper");
+      return zip.ZipStream.zip5(A, B, C, D, E, T, streamA, streamB, streamC, streamD, streamE, zipper);
+    }
+    static zip6(A, B, C, D, E, F, T, streamA, streamB, streamC, streamD, streamE, streamF, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1187, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1188, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 1189, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 1190, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 1191, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 1192, 21, "streamF");
+      if (zipper == null) dart.nullFailed(I$[11], 1193, 52, "zipper");
+      return zip.ZipStream.zip6(A, B, C, D, E, F, T, streamA, streamB, streamC, streamD, streamE, streamF, zipper);
+    }
+    static zip7(A, B, C, D, E, F, G, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1232, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1233, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 1234, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 1235, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 1236, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 1237, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 1238, 21, "streamG");
+      if (zipper == null) dart.nullFailed(I$[11], 1239, 57, "zipper");
+      return zip.ZipStream.zip7(A, B, C, D, E, F, G, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, zipper);
+    }
+    static zip8(A, B, C, D, E, F, G, H, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1280, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1281, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 1282, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 1283, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 1284, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 1285, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 1286, 21, "streamG");
+      if (streamH == null) dart.nullFailed(I$[11], 1287, 21, "streamH");
+      if (zipper == null) dart.nullFailed(I$[11], 1288, 62, "zipper");
+      return zip.ZipStream.zip8(A, B, C, D, E, F, G, H, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, zipper);
+    }
+    static zip9(A, B, C, D, E, F, G, H, I, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI, zipper) {
+      if (streamA == null) dart.nullFailed(I$[11], 1331, 21, "streamA");
+      if (streamB == null) dart.nullFailed(I$[11], 1332, 21, "streamB");
+      if (streamC == null) dart.nullFailed(I$[11], 1333, 21, "streamC");
+      if (streamD == null) dart.nullFailed(I$[11], 1334, 21, "streamD");
+      if (streamE == null) dart.nullFailed(I$[11], 1335, 21, "streamE");
+      if (streamF == null) dart.nullFailed(I$[11], 1336, 21, "streamF");
+      if (streamG == null) dart.nullFailed(I$[11], 1337, 21, "streamG");
+      if (streamH == null) dart.nullFailed(I$[11], 1338, 21, "streamH");
+      if (streamI == null) dart.nullFailed(I$[11], 1339, 21, "streamI");
+      if (zipper == null) dart.nullFailed(I$[11], 1340, 67, "zipper");
+      return zip.ZipStream.zip9(A, B, C, D, E, F, G, H, I, T, streamA, streamB, streamC, streamD, streamE, streamF, streamG, streamH, streamI, zipper);
+    }
+  };
+  (rx.Rx.new = function() {
+    ;
+  }).prototype = rx.Rx.prototype;
+  dart.addTypeTests(rx.Rx);
+  dart.addTypeCaches(rx.Rx);
+  dart.setLibraryUri(rx.Rx, I$[12]);
+  dart.trackLibraries("packages/rxdart/src/subjects/replay_subject.dart", {
+    "package:rxdart/src/subjects/replay_subject.dart": replay_subject,
+    "package:rxdart/src/transformers/start_with_error.dart": start_with_error,
+    "package:rxdart/src/utils/forwarding_stream.dart": forwarding_stream,
+    "package:rxdart/src/transformers/start_with.dart": start_with,
+    "package:rxdart/src/subjects/behavior_subject.dart": behavior_subject,
+    "package:rxdart/subjects.dart": subjects,
+    "package:rxdart/src/streams/connectable_stream.dart": connectable_stream,
+    "package:rxdart/streams.dart": streams,
+    "package:rxdart/src/rx.dart": rx
+  }, {
+  }, '{"version":3,"sourceRoot":"","sources":["replay_subject.dart","../transformers/start_with_error.dart","../utils/forwarding_stream.dart","../transformers/start_with.dart","behavior_subject.dart","../streams/connectable_stream.dart","../rx.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/rxdart/src/subjects/replay_subject.dart.lib.js"}');
+  // Exports:
+  return {
+    src__subjects__replay_subject: replay_subject,
+    src__transformers__start_with_error: start_with_error,
+    src__utils__forwarding_stream: forwarding_stream,
+    src__transformers__start_with: start_with,
+    src__subjects__behavior_subject: behavior_subject,
+    subjects: subjects,
+    src__streams__connectable_stream: connectable_stream,
+    streams: streams,
+    src__rx: rx
+  };
+}));
+
+//# sourceMappingURL=replay_subject.dart.lib.js.map
