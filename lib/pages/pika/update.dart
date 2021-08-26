@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class UpdateStudentPage extends StatefulWidget {
+class UpdatePage extends StatefulWidget {
   final String id;
-  UpdateStudentPage({Key key, this.id}) : super(key: key);
+  UpdatePage({Key key, this.id}) : super(key: key);
 
   @override
-  _UpdateStudentPageState createState() => _UpdateStudentPageState();
+  _UpdatePageState createState() => _UpdatePageState();
 }
 
-class _UpdateStudentPageState extends State<UpdateStudentPage> {
+class _UpdatePageState extends State<UpdatePage> {
   final _formKey = GlobalKey<FormState>();
 
   // Updaing Student
