@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:hq/pages/pika/update_student_page.dart';
+import 'package:hq/pages/pika/update.dart';
 
 class ListStudentPage extends StatefulWidget {
   @override
@@ -193,7 +193,7 @@ class _ListStudentPageState extends State<ListStudentPage> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      UpdateStudentPage(
+                                                      UpdatePage(
                                                           id: storedocs[i]
                                                               ['id']),
                                                 ))
