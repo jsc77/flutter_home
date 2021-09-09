@@ -15,7 +15,7 @@ class _NoAuthWaitState extends State<NoAuthWait> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "承認待ち中…\nお問い合わせ：so-kan@life-techno.jp",
+              "承認待ち中…\nお問い合わせ：jofew7@gmail.com",
               style: TextStyle(
                   fontSize: 20, fontFamily: "Kyo", color: Colors.white),
             ),

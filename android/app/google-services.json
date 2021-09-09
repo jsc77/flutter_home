@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "162754656965",
-    "project_id": "home-321408",
-    "storage_bucket": "home-321408.appspot.com"
+    "project_number": "513585800213",
+    "project_id": "test-67020",
+    "storage_bucket": "test-67020.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:162754656965:android:83ab0a1b5611b3caba4eac",
+        "mobilesdk_app_id": "1:513585800213:android:497179a99e1c05df269a1c",
         "android_client_info": {
           "package_name": "com.example.hq"
         }
       },
       "oauth_client": [
         {
-          "client_id": "162754656965-cskthe1qulsi7dadl42vhn14lg28nt2j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.hq",
-            "certificate_hash": "076e1b162386dcd1cf3973f5fb5da28f63581c95"
-          }
-        },
-        {
-          "client_id": "162754656965-e1frone93v152ce3t8qnr1cggqnmmvq9.apps.googleusercontent.com",
+          "client_id": "513585800213-9hohg3r8rnqjn4afjdrecsp9ropp3p8a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAKygP7uHoUo05XogoCt4tWtEp4U7bJCds"
+          "current_key": "AIzaSyBdg1RwD8fbaNVfvQferHOiFWiEGYpmb7I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "162754656965-e1frone93v152ce3t8qnr1cggqnmmvq9.apps.googleusercontent.com",
+              "client_id": "513585800213-9hohg3r8rnqjn4afjdrecsp9ropp3p8a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

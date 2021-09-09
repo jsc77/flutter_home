@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:hq/pages/auth/login.dart';
+import 'package:hq/pages/home/home_page.dart';
 import 'package:hq/pages/home/landing_page.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
@@ -78,7 +79,7 @@ class MyApp extends StatelessWidget {
                       bodyText2:
                           TextStyle(color: Colors.black45, fontFamily: "Kyo"))),
               title: 'Flutter',
-              home: Login(),
+              home: HomePage(),
             );
           }
           return CircularProgressIndicator();
